@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Estudiante {
+  rut String @id
+  nombre String
+  fechaNacimiento DateTime
+  anoIngreso Int
+  expVideojuegos String?
+
+  //Relación
+  respuestas RespuestaItem[]
+}
+
+model Test {
+  codTest Int @id @default(autoincrement())
+  descripcion String?
+  tiempoMax Int?
+  fechaTest DateTime @default(now())
+
+  //Relación
+  items Item[]
+}
+
+model Item {
+  idItem Int @id @default(autoincrement())
+  imagenPregunta String //URL o path
+  imagenRespuesta String
+  resCorrecta Int
+  dificultad String?
+
+  //FK
+  codTest Int
+  test Test @relation(fields: [codTest], references: [codTest])
+
+  //Relación
+  respuestas RespuestaItem[]
+}
+
+model RespuestaItem {
+
+  id Int @id @default(autoincrement())
+
+  //FK Estudiante
+  rutEstudiante String
+  estudiante Estudiante @relation(fields: [rutEstudiante], references: [rut])
+
+  //FK Item
+  idItem Int
+  item Item @relation(fields: [idItem], references: [idItem])
+
+  respuesta Int
+  tiempo Int //Milisegundos
+  esCorrecta Boolean
+  fechaIntento DateTime @default(now())
+}
