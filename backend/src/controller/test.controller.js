@@ -19,7 +19,7 @@ export const getAllTests = async (req, res) =>{
 
 export const createTest = async (req, res) => {
     try {
-        const { descripcion, tiempoMax, fechaTest  } = req.body;
+        const { descripcion, tiempoMax } = req.body;
         const newTest = await prisma.test.create({
             data: {
                 descripcion,
@@ -27,6 +27,19 @@ export const createTest = async (req, res) => {
             }
         });
         res.status(201).json(newTest);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+export const getTestById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const test = await prisma.test.findUnique({
+            where: { idTest: parseInt(id) },
+        });
+        res.status(201).json(test);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });

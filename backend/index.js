@@ -3,10 +3,9 @@ import express from "express";
 import morgan from "morgan";
 import indexRoutes from "./src/routes/index.routes.js";
 import cors from "cors";
-
+import { startSeed } from "./src/prisma/seed.js";
 
 const app = express();
-
 
 app.use(express.json());
 app.use(morgan("dev"));
@@ -18,6 +17,15 @@ app.use(cors({ origin: allowedOrigin, credentials: true }));
 app.use("/api", indexRoutes);
 
 const PORT = 3000;
+
+await startSeed()
+  .then(async () => {
+    console.log("Seeding verificado");
+  })
+  .catch(async (e) => {
+    console.error("Error al ejecutar el seeding:", e);
+    process.exit(1);
+  });
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}/api`);

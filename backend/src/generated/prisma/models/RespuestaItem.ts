@@ -244,8 +244,8 @@ export type RespuestaItemWhereInput = {
   tiempo?: Prisma.IntFilter<"RespuestaItem"> | number
   esCorrecta?: Prisma.BoolFilter<"RespuestaItem"> | boolean
   fechaIntento?: Prisma.DateTimeFilter<"RespuestaItem"> | Date | string
-  estudiante?: Prisma.XOR<Prisma.EstudianteScalarRelationFilter, Prisma.EstudianteWhereInput>
   item?: Prisma.XOR<Prisma.ItemScalarRelationFilter, Prisma.ItemWhereInput>
+  estudiante?: Prisma.XOR<Prisma.EstudianteScalarRelationFilter, Prisma.EstudianteWhereInput>
 }
 
 export type RespuestaItemOrderByWithRelationInput = {
@@ -256,8 +256,8 @@ export type RespuestaItemOrderByWithRelationInput = {
   tiempo?: Prisma.SortOrder
   esCorrecta?: Prisma.SortOrder
   fechaIntento?: Prisma.SortOrder
-  estudiante?: Prisma.EstudianteOrderByWithRelationInput
   item?: Prisma.ItemOrderByWithRelationInput
+  estudiante?: Prisma.EstudianteOrderByWithRelationInput
 }
 
 export type RespuestaItemWhereUniqueInput = Prisma.AtLeast<{
@@ -271,8 +271,8 @@ export type RespuestaItemWhereUniqueInput = Prisma.AtLeast<{
   tiempo?: Prisma.IntFilter<"RespuestaItem"> | number
   esCorrecta?: Prisma.BoolFilter<"RespuestaItem"> | boolean
   fechaIntento?: Prisma.DateTimeFilter<"RespuestaItem"> | Date | string
-  estudiante?: Prisma.XOR<Prisma.EstudianteScalarRelationFilter, Prisma.EstudianteWhereInput>
   item?: Prisma.XOR<Prisma.ItemScalarRelationFilter, Prisma.ItemWhereInput>
+  estudiante?: Prisma.XOR<Prisma.EstudianteScalarRelationFilter, Prisma.EstudianteWhereInput>
 }, "id">
 
 export type RespuestaItemOrderByWithAggregationInput = {
@@ -308,8 +308,8 @@ export type RespuestaItemCreateInput = {
   tiempo: number
   esCorrecta: boolean
   fechaIntento?: Date | string
-  estudiante: Prisma.EstudianteCreateNestedOneWithoutRespuestasInput
   item: Prisma.ItemCreateNestedOneWithoutRespuestasInput
+  estudiante: Prisma.EstudianteCreateNestedOneWithoutRespuestasInput
 }
 
 export type RespuestaItemUncheckedCreateInput = {
@@ -327,8 +327,8 @@ export type RespuestaItemUpdateInput = {
   tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fechaIntento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  estudiante?: Prisma.EstudianteUpdateOneRequiredWithoutRespuestasNestedInput
   item?: Prisma.ItemUpdateOneRequiredWithoutRespuestasNestedInput
+  estudiante?: Prisma.EstudianteUpdateOneRequiredWithoutRespuestasNestedInput
 }
 
 export type RespuestaItemUncheckedUpdateInput = {
@@ -689,8 +689,8 @@ export type RespuestaItemSelect<ExtArgs extends runtime.Types.Extensions.Interna
   tiempo?: boolean
   esCorrecta?: boolean
   fechaIntento?: boolean
-  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
+  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["respuestaItem"]>
 
 export type RespuestaItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -701,8 +701,8 @@ export type RespuestaItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   tiempo?: boolean
   esCorrecta?: boolean
   fechaIntento?: boolean
-  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
+  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["respuestaItem"]>
 
 export type RespuestaItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -713,8 +713,8 @@ export type RespuestaItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   tiempo?: boolean
   esCorrecta?: boolean
   fechaIntento?: boolean
-  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
+  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["respuestaItem"]>
 
 export type RespuestaItemSelectScalar = {
@@ -729,23 +729,23 @@ export type RespuestaItemSelectScalar = {
 
 export type RespuestaItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "rutEstudiante" | "idItem" | "respuesta" | "tiempo" | "esCorrecta" | "fechaIntento", ExtArgs["result"]["respuestaItem"]>
 export type RespuestaItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
+  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
 }
 export type RespuestaItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
+  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
 }
 export type RespuestaItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
+  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
 }
 
 export type $RespuestaItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "RespuestaItem"
   objects: {
-    estudiante: Prisma.$EstudiantePayload<ExtArgs>
     item: Prisma.$ItemPayload<ExtArgs>
+    estudiante: Prisma.$EstudiantePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1149,8 +1149,8 @@ readonly fields: RespuestaItemFieldRefs;
  */
 export interface Prisma__RespuestaItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  estudiante<T extends Prisma.EstudianteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstudianteDefaultArgs<ExtArgs>>): Prisma.Prisma__EstudianteClient<runtime.Types.Result.GetResult<Prisma.$EstudiantePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   item<T extends Prisma.ItemDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ItemDefaultArgs<ExtArgs>>): Prisma.Prisma__ItemClient<runtime.Types.Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  estudiante<T extends Prisma.EstudianteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstudianteDefaultArgs<ExtArgs>>): Prisma.Prisma__EstudianteClient<runtime.Types.Result.GetResult<Prisma.$EstudiantePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

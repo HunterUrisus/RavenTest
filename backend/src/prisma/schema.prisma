@@ -8,55 +8,40 @@ datasource db {
 }
 
 model Estudiante {
-  rut String @id
-  nombre String
+  rut             String          @id
+  nombre          String
   fechaNacimiento DateTime
-  anoIngreso Int
-  expVideojuegos String?
-
-  //Relación
-  respuestas RespuestaItem[]
+  anoIngreso      Int
+  expVideojuegos  String?
+  respuestas      RespuestaItem[]
 }
 
 model Test {
-  codTest Int @id @default(autoincrement())
+  codTest     Int     @id @default(autoincrement())
   descripcion String?
-  tiempoMax Int?
-  fechaTest DateTime @default(now())
-
-  //Relación
-  items Item[]
+  tiempoMax   Int?
+  items       Item[]
 }
 
 model Item {
-  idItem Int @id @default(autoincrement())
-  imagenPregunta String //URL o path
-  imagenRespuesta String
+  idItem      Int             @id @default(autoincrement())
   resCorrecta Int
-  dificultad String?
-
-  //FK
-  codTest Int
-  test Test @relation(fields: [codTest], references: [codTest])
-
-  //Relación
-  respuestas RespuestaItem[]
+  dificultad  String?
+  codTest     Int
+  numero      Int
+  serie       String
+  test        Test            @relation(fields: [codTest], references: [codTest])
+  respuestas  RespuestaItem[]
 }
 
 model RespuestaItem {
-
-  id Int @id @default(autoincrement())
-
-  //FK Estudiante
+  id            Int        @id @default(autoincrement())
   rutEstudiante String
-  estudiante Estudiante @relation(fields: [rutEstudiante], references: [rut])
-
-  //FK Item
-  idItem Int
-  item Item @relation(fields: [idItem], references: [idItem])
-
-  respuesta Int
-  tiempo Int //Milisegundos
-  esCorrecta Boolean
-  fechaIntento DateTime @default(now())
+  idItem        Int
+  respuesta     Int
+  tiempo        Int
+  esCorrecta    Boolean
+  fechaIntento  DateTime   @default(now())
+  item          Item       @relation(fields: [idItem], references: [idItem])
+  estudiante    Estudiante @relation(fields: [rutEstudiante], references: [rut])
 }

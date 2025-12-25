@@ -756,8 +756,7 @@ export type EstudianteScalarFieldEnum = (typeof EstudianteScalarFieldEnum)[keyof
 export const TestScalarFieldEnum = {
   codTest: 'codTest',
   descripcion: 'descripcion',
-  tiempoMax: 'tiempoMax',
-  fechaTest: 'fechaTest'
+  tiempoMax: 'tiempoMax'
 } as const
 
 export type TestScalarFieldEnum = (typeof TestScalarFieldEnum)[keyof typeof TestScalarFieldEnum]
@@ -765,11 +764,11 @@ export type TestScalarFieldEnum = (typeof TestScalarFieldEnum)[keyof typeof Test
 
 export const ItemScalarFieldEnum = {
   idItem: 'idItem',
-  imagenPregunta: 'imagenPregunta',
-  imagenRespuesta: 'imagenRespuesta',
   resCorrecta: 'resCorrecta',
   dificultad: 'dificultad',
-  codTest: 'codTest'
+  codTest: 'codTest',
+  numero: 'numero',
+  serie: 'serie'
 } as const
 
 export type ItemScalarFieldEnum = (typeof ItemScalarFieldEnum)[keyof typeof ItemScalarFieldEnum]

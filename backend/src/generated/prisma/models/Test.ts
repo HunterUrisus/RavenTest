@@ -40,21 +40,18 @@ export type TestMinAggregateOutputType = {
   codTest: number | null
   descripcion: string | null
   tiempoMax: number | null
-  fechaTest: Date | null
 }
 
 export type TestMaxAggregateOutputType = {
   codTest: number | null
   descripcion: string | null
   tiempoMax: number | null
-  fechaTest: Date | null
 }
 
 export type TestCountAggregateOutputType = {
   codTest: number
   descripcion: number
   tiempoMax: number
-  fechaTest: number
   _all: number
 }
 
@@ -73,21 +70,18 @@ export type TestMinAggregateInputType = {
   codTest?: true
   descripcion?: true
   tiempoMax?: true
-  fechaTest?: true
 }
 
 export type TestMaxAggregateInputType = {
   codTest?: true
   descripcion?: true
   tiempoMax?: true
-  fechaTest?: true
 }
 
 export type TestCountAggregateInputType = {
   codTest?: true
   descripcion?: true
   tiempoMax?: true
-  fechaTest?: true
   _all?: true
 }
 
@@ -181,7 +175,6 @@ export type TestGroupByOutputType = {
   codTest: number
   descripcion: string | null
   tiempoMax: number | null
-  fechaTest: Date
   _count: TestCountAggregateOutputType | null
   _avg: TestAvgAggregateOutputType | null
   _sum: TestSumAggregateOutputType | null
@@ -211,7 +204,6 @@ export type TestWhereInput = {
   codTest?: Prisma.IntFilter<"Test"> | number
   descripcion?: Prisma.StringNullableFilter<"Test"> | string | null
   tiempoMax?: Prisma.IntNullableFilter<"Test"> | number | null
-  fechaTest?: Prisma.DateTimeFilter<"Test"> | Date | string
   items?: Prisma.ItemListRelationFilter
 }
 
@@ -219,7 +211,6 @@ export type TestOrderByWithRelationInput = {
   codTest?: Prisma.SortOrder
   descripcion?: Prisma.SortOrderInput | Prisma.SortOrder
   tiempoMax?: Prisma.SortOrderInput | Prisma.SortOrder
-  fechaTest?: Prisma.SortOrder
   items?: Prisma.ItemOrderByRelationAggregateInput
 }
 
@@ -230,7 +221,6 @@ export type TestWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TestWhereInput | Prisma.TestWhereInput[]
   descripcion?: Prisma.StringNullableFilter<"Test"> | string | null
   tiempoMax?: Prisma.IntNullableFilter<"Test"> | number | null
-  fechaTest?: Prisma.DateTimeFilter<"Test"> | Date | string
   items?: Prisma.ItemListRelationFilter
 }, "codTest">
 
@@ -238,7 +228,6 @@ export type TestOrderByWithAggregationInput = {
   codTest?: Prisma.SortOrder
   descripcion?: Prisma.SortOrderInput | Prisma.SortOrder
   tiempoMax?: Prisma.SortOrderInput | Prisma.SortOrder
-  fechaTest?: Prisma.SortOrder
   _count?: Prisma.TestCountOrderByAggregateInput
   _avg?: Prisma.TestAvgOrderByAggregateInput
   _max?: Prisma.TestMaxOrderByAggregateInput
@@ -253,13 +242,11 @@ export type TestScalarWhereWithAggregatesInput = {
   codTest?: Prisma.IntWithAggregatesFilter<"Test"> | number
   descripcion?: Prisma.StringNullableWithAggregatesFilter<"Test"> | string | null
   tiempoMax?: Prisma.IntNullableWithAggregatesFilter<"Test"> | number | null
-  fechaTest?: Prisma.DateTimeWithAggregatesFilter<"Test"> | Date | string
 }
 
 export type TestCreateInput = {
   descripcion?: string | null
   tiempoMax?: number | null
-  fechaTest?: Date | string
   items?: Prisma.ItemCreateNestedManyWithoutTestInput
 }
 
@@ -267,14 +254,12 @@ export type TestUncheckedCreateInput = {
   codTest?: number
   descripcion?: string | null
   tiempoMax?: number | null
-  fechaTest?: Date | string
   items?: Prisma.ItemUncheckedCreateNestedManyWithoutTestInput
 }
 
 export type TestUpdateInput = {
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiempoMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fechaTest?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.ItemUpdateManyWithoutTestNestedInput
 }
 
@@ -282,7 +267,6 @@ export type TestUncheckedUpdateInput = {
   codTest?: Prisma.IntFieldUpdateOperationsInput | number
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiempoMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fechaTest?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.ItemUncheckedUpdateManyWithoutTestNestedInput
 }
 
@@ -290,27 +274,23 @@ export type TestCreateManyInput = {
   codTest?: number
   descripcion?: string | null
   tiempoMax?: number | null
-  fechaTest?: Date | string
 }
 
 export type TestUpdateManyMutationInput = {
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiempoMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fechaTest?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TestUncheckedUpdateManyInput = {
   codTest?: Prisma.IntFieldUpdateOperationsInput | number
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiempoMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fechaTest?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TestCountOrderByAggregateInput = {
   codTest?: Prisma.SortOrder
   descripcion?: Prisma.SortOrder
   tiempoMax?: Prisma.SortOrder
-  fechaTest?: Prisma.SortOrder
 }
 
 export type TestAvgOrderByAggregateInput = {
@@ -322,14 +302,12 @@ export type TestMaxOrderByAggregateInput = {
   codTest?: Prisma.SortOrder
   descripcion?: Prisma.SortOrder
   tiempoMax?: Prisma.SortOrder
-  fechaTest?: Prisma.SortOrder
 }
 
 export type TestMinOrderByAggregateInput = {
   codTest?: Prisma.SortOrder
   descripcion?: Prisma.SortOrder
   tiempoMax?: Prisma.SortOrder
-  fechaTest?: Prisma.SortOrder
 }
 
 export type TestSumOrderByAggregateInput = {
@@ -367,14 +345,12 @@ export type TestUpdateOneRequiredWithoutItemsNestedInput = {
 export type TestCreateWithoutItemsInput = {
   descripcion?: string | null
   tiempoMax?: number | null
-  fechaTest?: Date | string
 }
 
 export type TestUncheckedCreateWithoutItemsInput = {
   codTest?: number
   descripcion?: string | null
   tiempoMax?: number | null
-  fechaTest?: Date | string
 }
 
 export type TestCreateOrConnectWithoutItemsInput = {
@@ -396,14 +372,12 @@ export type TestUpdateToOneWithWhereWithoutItemsInput = {
 export type TestUpdateWithoutItemsInput = {
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiempoMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fechaTest?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TestUncheckedUpdateWithoutItemsInput = {
   codTest?: Prisma.IntFieldUpdateOperationsInput | number
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiempoMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  fechaTest?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -441,7 +415,6 @@ export type TestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   codTest?: boolean
   descripcion?: boolean
   tiempoMax?: boolean
-  fechaTest?: boolean
   items?: boolean | Prisma.Test$itemsArgs<ExtArgs>
   _count?: boolean | Prisma.TestCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["test"]>
@@ -450,24 +423,21 @@ export type TestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   codTest?: boolean
   descripcion?: boolean
   tiempoMax?: boolean
-  fechaTest?: boolean
 }, ExtArgs["result"]["test"]>
 
 export type TestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   codTest?: boolean
   descripcion?: boolean
   tiempoMax?: boolean
-  fechaTest?: boolean
 }, ExtArgs["result"]["test"]>
 
 export type TestSelectScalar = {
   codTest?: boolean
   descripcion?: boolean
   tiempoMax?: boolean
-  fechaTest?: boolean
 }
 
-export type TestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"codTest" | "descripcion" | "tiempoMax" | "fechaTest", ExtArgs["result"]["test"]>
+export type TestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"codTest" | "descripcion" | "tiempoMax", ExtArgs["result"]["test"]>
 export type TestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | Prisma.Test$itemsArgs<ExtArgs>
   _count?: boolean | Prisma.TestCountOutputTypeDefaultArgs<ExtArgs>
@@ -484,7 +454,6 @@ export type $TestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     codTest: number
     descripcion: string | null
     tiempoMax: number | null
-    fechaTest: Date
   }, ExtArgs["result"]["test"]>
   composites: {}
 }
@@ -912,7 +881,6 @@ export interface TestFieldRefs {
   readonly codTest: Prisma.FieldRef<"Test", 'Int'>
   readonly descripcion: Prisma.FieldRef<"Test", 'String'>
   readonly tiempoMax: Prisma.FieldRef<"Test", 'Int'>
-  readonly fechaTest: Prisma.FieldRef<"Test", 'DateTime'>
 }
     
 

@@ -30,39 +30,41 @@ export type ItemAvgAggregateOutputType = {
   idItem: number | null
   resCorrecta: number | null
   codTest: number | null
+  numero: number | null
 }
 
 export type ItemSumAggregateOutputType = {
   idItem: number | null
   resCorrecta: number | null
   codTest: number | null
+  numero: number | null
 }
 
 export type ItemMinAggregateOutputType = {
   idItem: number | null
-  imagenPregunta: string | null
-  imagenRespuesta: string | null
   resCorrecta: number | null
   dificultad: string | null
   codTest: number | null
+  numero: number | null
+  serie: string | null
 }
 
 export type ItemMaxAggregateOutputType = {
   idItem: number | null
-  imagenPregunta: string | null
-  imagenRespuesta: string | null
   resCorrecta: number | null
   dificultad: string | null
   codTest: number | null
+  numero: number | null
+  serie: string | null
 }
 
 export type ItemCountAggregateOutputType = {
   idItem: number
-  imagenPregunta: number
-  imagenRespuesta: number
   resCorrecta: number
   dificultad: number
   codTest: number
+  numero: number
+  serie: number
   _all: number
 }
 
@@ -71,39 +73,41 @@ export type ItemAvgAggregateInputType = {
   idItem?: true
   resCorrecta?: true
   codTest?: true
+  numero?: true
 }
 
 export type ItemSumAggregateInputType = {
   idItem?: true
   resCorrecta?: true
   codTest?: true
+  numero?: true
 }
 
 export type ItemMinAggregateInputType = {
   idItem?: true
-  imagenPregunta?: true
-  imagenRespuesta?: true
   resCorrecta?: true
   dificultad?: true
   codTest?: true
+  numero?: true
+  serie?: true
 }
 
 export type ItemMaxAggregateInputType = {
   idItem?: true
-  imagenPregunta?: true
-  imagenRespuesta?: true
   resCorrecta?: true
   dificultad?: true
   codTest?: true
+  numero?: true
+  serie?: true
 }
 
 export type ItemCountAggregateInputType = {
   idItem?: true
-  imagenPregunta?: true
-  imagenRespuesta?: true
   resCorrecta?: true
   dificultad?: true
   codTest?: true
+  numero?: true
+  serie?: true
   _all?: true
 }
 
@@ -195,11 +199,11 @@ export type ItemGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type ItemGroupByOutputType = {
   idItem: number
-  imagenPregunta: string
-  imagenRespuesta: string
   resCorrecta: number
   dificultad: string | null
   codTest: number
+  numero: number
+  serie: string
   _count: ItemCountAggregateOutputType | null
   _avg: ItemAvgAggregateOutputType | null
   _sum: ItemSumAggregateOutputType | null
@@ -227,22 +231,22 @@ export type ItemWhereInput = {
   OR?: Prisma.ItemWhereInput[]
   NOT?: Prisma.ItemWhereInput | Prisma.ItemWhereInput[]
   idItem?: Prisma.IntFilter<"Item"> | number
-  imagenPregunta?: Prisma.StringFilter<"Item"> | string
-  imagenRespuesta?: Prisma.StringFilter<"Item"> | string
   resCorrecta?: Prisma.IntFilter<"Item"> | number
   dificultad?: Prisma.StringNullableFilter<"Item"> | string | null
   codTest?: Prisma.IntFilter<"Item"> | number
+  numero?: Prisma.IntFilter<"Item"> | number
+  serie?: Prisma.StringFilter<"Item"> | string
   test?: Prisma.XOR<Prisma.TestScalarRelationFilter, Prisma.TestWhereInput>
   respuestas?: Prisma.RespuestaItemListRelationFilter
 }
 
 export type ItemOrderByWithRelationInput = {
   idItem?: Prisma.SortOrder
-  imagenPregunta?: Prisma.SortOrder
-  imagenRespuesta?: Prisma.SortOrder
   resCorrecta?: Prisma.SortOrder
   dificultad?: Prisma.SortOrderInput | Prisma.SortOrder
   codTest?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
+  serie?: Prisma.SortOrder
   test?: Prisma.TestOrderByWithRelationInput
   respuestas?: Prisma.RespuestaItemOrderByRelationAggregateInput
 }
@@ -252,22 +256,22 @@ export type ItemWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ItemWhereInput | Prisma.ItemWhereInput[]
   OR?: Prisma.ItemWhereInput[]
   NOT?: Prisma.ItemWhereInput | Prisma.ItemWhereInput[]
-  imagenPregunta?: Prisma.StringFilter<"Item"> | string
-  imagenRespuesta?: Prisma.StringFilter<"Item"> | string
   resCorrecta?: Prisma.IntFilter<"Item"> | number
   dificultad?: Prisma.StringNullableFilter<"Item"> | string | null
   codTest?: Prisma.IntFilter<"Item"> | number
+  numero?: Prisma.IntFilter<"Item"> | number
+  serie?: Prisma.StringFilter<"Item"> | string
   test?: Prisma.XOR<Prisma.TestScalarRelationFilter, Prisma.TestWhereInput>
   respuestas?: Prisma.RespuestaItemListRelationFilter
 }, "idItem">
 
 export type ItemOrderByWithAggregationInput = {
   idItem?: Prisma.SortOrder
-  imagenPregunta?: Prisma.SortOrder
-  imagenRespuesta?: Prisma.SortOrder
   resCorrecta?: Prisma.SortOrder
   dificultad?: Prisma.SortOrderInput | Prisma.SortOrder
   codTest?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
+  serie?: Prisma.SortOrder
   _count?: Prisma.ItemCountOrderByAggregateInput
   _avg?: Prisma.ItemAvgOrderByAggregateInput
   _max?: Prisma.ItemMaxOrderByAggregateInput
@@ -280,74 +284,74 @@ export type ItemScalarWhereWithAggregatesInput = {
   OR?: Prisma.ItemScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ItemScalarWhereWithAggregatesInput | Prisma.ItemScalarWhereWithAggregatesInput[]
   idItem?: Prisma.IntWithAggregatesFilter<"Item"> | number
-  imagenPregunta?: Prisma.StringWithAggregatesFilter<"Item"> | string
-  imagenRespuesta?: Prisma.StringWithAggregatesFilter<"Item"> | string
   resCorrecta?: Prisma.IntWithAggregatesFilter<"Item"> | number
   dificultad?: Prisma.StringNullableWithAggregatesFilter<"Item"> | string | null
   codTest?: Prisma.IntWithAggregatesFilter<"Item"> | number
+  numero?: Prisma.IntWithAggregatesFilter<"Item"> | number
+  serie?: Prisma.StringWithAggregatesFilter<"Item"> | string
 }
 
 export type ItemCreateInput = {
-  imagenPregunta: string
-  imagenRespuesta: string
   resCorrecta: number
   dificultad?: string | null
+  numero: number
+  serie: string
   test: Prisma.TestCreateNestedOneWithoutItemsInput
   respuestas?: Prisma.RespuestaItemCreateNestedManyWithoutItemInput
 }
 
 export type ItemUncheckedCreateInput = {
   idItem?: number
-  imagenPregunta: string
-  imagenRespuesta: string
   resCorrecta: number
   dificultad?: string | null
   codTest: number
+  numero: number
+  serie: string
   respuestas?: Prisma.RespuestaItemUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type ItemUpdateInput = {
-  imagenPregunta?: Prisma.StringFieldUpdateOperationsInput | string
-  imagenRespuesta?: Prisma.StringFieldUpdateOperationsInput | string
   resCorrecta?: Prisma.IntFieldUpdateOperationsInput | number
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  serie?: Prisma.StringFieldUpdateOperationsInput | string
   test?: Prisma.TestUpdateOneRequiredWithoutItemsNestedInput
   respuestas?: Prisma.RespuestaItemUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateInput = {
   idItem?: Prisma.IntFieldUpdateOperationsInput | number
-  imagenPregunta?: Prisma.StringFieldUpdateOperationsInput | string
-  imagenRespuesta?: Prisma.StringFieldUpdateOperationsInput | string
   resCorrecta?: Prisma.IntFieldUpdateOperationsInput | number
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codTest?: Prisma.IntFieldUpdateOperationsInput | number
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  serie?: Prisma.StringFieldUpdateOperationsInput | string
   respuestas?: Prisma.RespuestaItemUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type ItemCreateManyInput = {
   idItem?: number
-  imagenPregunta: string
-  imagenRespuesta: string
   resCorrecta: number
   dificultad?: string | null
   codTest: number
+  numero: number
+  serie: string
 }
 
 export type ItemUpdateManyMutationInput = {
-  imagenPregunta?: Prisma.StringFieldUpdateOperationsInput | string
-  imagenRespuesta?: Prisma.StringFieldUpdateOperationsInput | string
   resCorrecta?: Prisma.IntFieldUpdateOperationsInput | number
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  serie?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ItemUncheckedUpdateManyInput = {
   idItem?: Prisma.IntFieldUpdateOperationsInput | number
-  imagenPregunta?: Prisma.StringFieldUpdateOperationsInput | string
-  imagenRespuesta?: Prisma.StringFieldUpdateOperationsInput | string
   resCorrecta?: Prisma.IntFieldUpdateOperationsInput | number
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codTest?: Prisma.IntFieldUpdateOperationsInput | number
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  serie?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ItemListRelationFilter = {
@@ -362,41 +366,43 @@ export type ItemOrderByRelationAggregateInput = {
 
 export type ItemCountOrderByAggregateInput = {
   idItem?: Prisma.SortOrder
-  imagenPregunta?: Prisma.SortOrder
-  imagenRespuesta?: Prisma.SortOrder
   resCorrecta?: Prisma.SortOrder
   dificultad?: Prisma.SortOrder
   codTest?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
+  serie?: Prisma.SortOrder
 }
 
 export type ItemAvgOrderByAggregateInput = {
   idItem?: Prisma.SortOrder
   resCorrecta?: Prisma.SortOrder
   codTest?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
 }
 
 export type ItemMaxOrderByAggregateInput = {
   idItem?: Prisma.SortOrder
-  imagenPregunta?: Prisma.SortOrder
-  imagenRespuesta?: Prisma.SortOrder
   resCorrecta?: Prisma.SortOrder
   dificultad?: Prisma.SortOrder
   codTest?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
+  serie?: Prisma.SortOrder
 }
 
 export type ItemMinOrderByAggregateInput = {
   idItem?: Prisma.SortOrder
-  imagenPregunta?: Prisma.SortOrder
-  imagenRespuesta?: Prisma.SortOrder
   resCorrecta?: Prisma.SortOrder
   dificultad?: Prisma.SortOrder
   codTest?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
+  serie?: Prisma.SortOrder
 }
 
 export type ItemSumOrderByAggregateInput = {
   idItem?: Prisma.SortOrder
   resCorrecta?: Prisma.SortOrder
   codTest?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
 }
 
 export type ItemScalarRelationFilter = {
@@ -461,19 +467,19 @@ export type ItemUpdateOneRequiredWithoutRespuestasNestedInput = {
 }
 
 export type ItemCreateWithoutTestInput = {
-  imagenPregunta: string
-  imagenRespuesta: string
   resCorrecta: number
   dificultad?: string | null
+  numero: number
+  serie: string
   respuestas?: Prisma.RespuestaItemCreateNestedManyWithoutItemInput
 }
 
 export type ItemUncheckedCreateWithoutTestInput = {
   idItem?: number
-  imagenPregunta: string
-  imagenRespuesta: string
   resCorrecta: number
   dificultad?: string | null
+  numero: number
+  serie: string
   respuestas?: Prisma.RespuestaItemUncheckedCreateNestedManyWithoutItemInput
 }
 
@@ -508,28 +514,28 @@ export type ItemScalarWhereInput = {
   OR?: Prisma.ItemScalarWhereInput[]
   NOT?: Prisma.ItemScalarWhereInput | Prisma.ItemScalarWhereInput[]
   idItem?: Prisma.IntFilter<"Item"> | number
-  imagenPregunta?: Prisma.StringFilter<"Item"> | string
-  imagenRespuesta?: Prisma.StringFilter<"Item"> | string
   resCorrecta?: Prisma.IntFilter<"Item"> | number
   dificultad?: Prisma.StringNullableFilter<"Item"> | string | null
   codTest?: Prisma.IntFilter<"Item"> | number
+  numero?: Prisma.IntFilter<"Item"> | number
+  serie?: Prisma.StringFilter<"Item"> | string
 }
 
 export type ItemCreateWithoutRespuestasInput = {
-  imagenPregunta: string
-  imagenRespuesta: string
   resCorrecta: number
   dificultad?: string | null
+  numero: number
+  serie: string
   test: Prisma.TestCreateNestedOneWithoutItemsInput
 }
 
 export type ItemUncheckedCreateWithoutRespuestasInput = {
   idItem?: number
-  imagenPregunta: string
-  imagenRespuesta: string
   resCorrecta: number
   dificultad?: string | null
   codTest: number
+  numero: number
+  serie: string
 }
 
 export type ItemCreateOrConnectWithoutRespuestasInput = {
@@ -549,53 +555,53 @@ export type ItemUpdateToOneWithWhereWithoutRespuestasInput = {
 }
 
 export type ItemUpdateWithoutRespuestasInput = {
-  imagenPregunta?: Prisma.StringFieldUpdateOperationsInput | string
-  imagenRespuesta?: Prisma.StringFieldUpdateOperationsInput | string
   resCorrecta?: Prisma.IntFieldUpdateOperationsInput | number
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  serie?: Prisma.StringFieldUpdateOperationsInput | string
   test?: Prisma.TestUpdateOneRequiredWithoutItemsNestedInput
 }
 
 export type ItemUncheckedUpdateWithoutRespuestasInput = {
   idItem?: Prisma.IntFieldUpdateOperationsInput | number
-  imagenPregunta?: Prisma.StringFieldUpdateOperationsInput | string
-  imagenRespuesta?: Prisma.StringFieldUpdateOperationsInput | string
   resCorrecta?: Prisma.IntFieldUpdateOperationsInput | number
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codTest?: Prisma.IntFieldUpdateOperationsInput | number
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  serie?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ItemCreateManyTestInput = {
   idItem?: number
-  imagenPregunta: string
-  imagenRespuesta: string
   resCorrecta: number
   dificultad?: string | null
+  numero: number
+  serie: string
 }
 
 export type ItemUpdateWithoutTestInput = {
-  imagenPregunta?: Prisma.StringFieldUpdateOperationsInput | string
-  imagenRespuesta?: Prisma.StringFieldUpdateOperationsInput | string
   resCorrecta?: Prisma.IntFieldUpdateOperationsInput | number
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  serie?: Prisma.StringFieldUpdateOperationsInput | string
   respuestas?: Prisma.RespuestaItemUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateWithoutTestInput = {
   idItem?: Prisma.IntFieldUpdateOperationsInput | number
-  imagenPregunta?: Prisma.StringFieldUpdateOperationsInput | string
-  imagenRespuesta?: Prisma.StringFieldUpdateOperationsInput | string
   resCorrecta?: Prisma.IntFieldUpdateOperationsInput | number
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  serie?: Prisma.StringFieldUpdateOperationsInput | string
   respuestas?: Prisma.RespuestaItemUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type ItemUncheckedUpdateManyWithoutTestInput = {
   idItem?: Prisma.IntFieldUpdateOperationsInput | number
-  imagenPregunta?: Prisma.StringFieldUpdateOperationsInput | string
-  imagenRespuesta?: Prisma.StringFieldUpdateOperationsInput | string
   resCorrecta?: Prisma.IntFieldUpdateOperationsInput | number
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  serie?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -631,11 +637,11 @@ export type ItemCountOutputTypeCountRespuestasArgs<ExtArgs extends runtime.Types
 
 export type ItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idItem?: boolean
-  imagenPregunta?: boolean
-  imagenRespuesta?: boolean
   resCorrecta?: boolean
   dificultad?: boolean
   codTest?: boolean
+  numero?: boolean
+  serie?: boolean
   test?: boolean | Prisma.TestDefaultArgs<ExtArgs>
   respuestas?: boolean | Prisma.Item$respuestasArgs<ExtArgs>
   _count?: boolean | Prisma.ItemCountOutputTypeDefaultArgs<ExtArgs>
@@ -643,34 +649,34 @@ export type ItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 
 export type ItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idItem?: boolean
-  imagenPregunta?: boolean
-  imagenRespuesta?: boolean
   resCorrecta?: boolean
   dificultad?: boolean
   codTest?: boolean
+  numero?: boolean
+  serie?: boolean
   test?: boolean | Prisma.TestDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["item"]>
 
 export type ItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idItem?: boolean
-  imagenPregunta?: boolean
-  imagenRespuesta?: boolean
   resCorrecta?: boolean
   dificultad?: boolean
   codTest?: boolean
+  numero?: boolean
+  serie?: boolean
   test?: boolean | Prisma.TestDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["item"]>
 
 export type ItemSelectScalar = {
   idItem?: boolean
-  imagenPregunta?: boolean
-  imagenRespuesta?: boolean
   resCorrecta?: boolean
   dificultad?: boolean
   codTest?: boolean
+  numero?: boolean
+  serie?: boolean
 }
 
-export type ItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idItem" | "imagenPregunta" | "imagenRespuesta" | "resCorrecta" | "dificultad" | "codTest", ExtArgs["result"]["item"]>
+export type ItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idItem" | "resCorrecta" | "dificultad" | "codTest" | "numero" | "serie", ExtArgs["result"]["item"]>
 export type ItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   test?: boolean | Prisma.TestDefaultArgs<ExtArgs>
   respuestas?: boolean | Prisma.Item$respuestasArgs<ExtArgs>
@@ -691,11 +697,11 @@ export type $ItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idItem: number
-    imagenPregunta: string
-    imagenRespuesta: string
     resCorrecta: number
     dificultad: string | null
     codTest: number
+    numero: number
+    serie: string
   }, ExtArgs["result"]["item"]>
   composites: {}
 }
@@ -1122,11 +1128,11 @@ export interface Prisma__ItemClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface ItemFieldRefs {
   readonly idItem: Prisma.FieldRef<"Item", 'Int'>
-  readonly imagenPregunta: Prisma.FieldRef<"Item", 'String'>
-  readonly imagenRespuesta: Prisma.FieldRef<"Item", 'String'>
   readonly resCorrecta: Prisma.FieldRef<"Item", 'Int'>
   readonly dificultad: Prisma.FieldRef<"Item", 'String'>
   readonly codTest: Prisma.FieldRef<"Item", 'Int'>
+  readonly numero: Prisma.FieldRef<"Item", 'Int'>
+  readonly serie: Prisma.FieldRef<"Item", 'String'>
 }
     
 
