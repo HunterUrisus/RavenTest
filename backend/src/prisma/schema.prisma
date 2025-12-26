@@ -30,6 +30,7 @@ model Item {
   codTest     Int
   numero      Int
   serie       String
+  cantOpciones Int
   test        Test            @relation(fields: [codTest], references: [codTest])
   respuestas  RespuestaItem[]
 }

@@ -7,7 +7,7 @@
     "start": "tsx index.js",
     "dev": "tsx watch index.js",
     "db:deploy": "npx prisma migrate deploy && npx prisma generate",
-    "db:update": "npx prisma migrate dev",
+    "db:update": "npx prisma migrate dev && npx prisma generate",
     "db:view": "npx prisma studio --config ./prisma.config.ts"
   },
   "keywords": [],

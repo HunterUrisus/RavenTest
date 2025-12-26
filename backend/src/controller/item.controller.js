@@ -31,7 +31,7 @@ export const getItemsByTestId = async (req, res) => {
 
 export const createItem = async (req, res) => { 
     try {
-        const { serie, numero, resCorrecta, dificultad, codTest } = req.body;
+        const { serie, numero, resCorrecta, dificultad, cantOpciones, codTest } = req.body;
 
         // Verificar formato de imagenPregunta (debe ser A-1, A-2, B-2 ..., E-12)
         const preguntaRegex = /^[A-E]-[1-12]$/;
@@ -56,6 +56,7 @@ export const createItem = async (req, res) => {
                 resCorrecta,
                 dificultad,
                 codTest,
+                cantOpciones,
             },
         });
         res.status(201).json({message: "Item creado exitosamente", data: newItem});

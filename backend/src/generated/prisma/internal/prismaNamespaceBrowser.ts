@@ -99,7 +99,8 @@ export const ItemScalarFieldEnum = {
   dificultad: 'dificultad',
   codTest: 'codTest',
   numero: 'numero',
-  serie: 'serie'
+  serie: 'serie',
+  cantOpciones: 'cantOpciones'
 } as const
 
 export type ItemScalarFieldEnum = (typeof ItemScalarFieldEnum)[keyof typeof ItemScalarFieldEnum]

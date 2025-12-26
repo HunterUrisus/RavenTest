@@ -31,6 +31,7 @@ export type ItemAvgAggregateOutputType = {
   resCorrecta: number | null
   codTest: number | null
   numero: number | null
+  cantOpciones: number | null
 }
 
 export type ItemSumAggregateOutputType = {
@@ -38,6 +39,7 @@ export type ItemSumAggregateOutputType = {
   resCorrecta: number | null
   codTest: number | null
   numero: number | null
+  cantOpciones: number | null
 }
 
 export type ItemMinAggregateOutputType = {
@@ -47,6 +49,7 @@ export type ItemMinAggregateOutputType = {
   codTest: number | null
   numero: number | null
   serie: string | null
+  cantOpciones: number | null
 }
 
 export type ItemMaxAggregateOutputType = {
@@ -56,6 +59,7 @@ export type ItemMaxAggregateOutputType = {
   codTest: number | null
   numero: number | null
   serie: string | null
+  cantOpciones: number | null
 }
 
 export type ItemCountAggregateOutputType = {
@@ -65,6 +69,7 @@ export type ItemCountAggregateOutputType = {
   codTest: number
   numero: number
   serie: number
+  cantOpciones: number
   _all: number
 }
 
@@ -74,6 +79,7 @@ export type ItemAvgAggregateInputType = {
   resCorrecta?: true
   codTest?: true
   numero?: true
+  cantOpciones?: true
 }
 
 export type ItemSumAggregateInputType = {
@@ -81,6 +87,7 @@ export type ItemSumAggregateInputType = {
   resCorrecta?: true
   codTest?: true
   numero?: true
+  cantOpciones?: true
 }
 
 export type ItemMinAggregateInputType = {
@@ -90,6 +97,7 @@ export type ItemMinAggregateInputType = {
   codTest?: true
   numero?: true
   serie?: true
+  cantOpciones?: true
 }
 
 export type ItemMaxAggregateInputType = {
@@ -99,6 +107,7 @@ export type ItemMaxAggregateInputType = {
   codTest?: true
   numero?: true
   serie?: true
+  cantOpciones?: true
 }
 
 export type ItemCountAggregateInputType = {
@@ -108,6 +117,7 @@ export type ItemCountAggregateInputType = {
   codTest?: true
   numero?: true
   serie?: true
+  cantOpciones?: true
   _all?: true
 }
 
@@ -204,6 +214,7 @@ export type ItemGroupByOutputType = {
   codTest: number
   numero: number
   serie: string
+  cantOpciones: number
   _count: ItemCountAggregateOutputType | null
   _avg: ItemAvgAggregateOutputType | null
   _sum: ItemSumAggregateOutputType | null
@@ -236,6 +247,7 @@ export type ItemWhereInput = {
   codTest?: Prisma.IntFilter<"Item"> | number
   numero?: Prisma.IntFilter<"Item"> | number
   serie?: Prisma.StringFilter<"Item"> | string
+  cantOpciones?: Prisma.IntFilter<"Item"> | number
   test?: Prisma.XOR<Prisma.TestScalarRelationFilter, Prisma.TestWhereInput>
   respuestas?: Prisma.RespuestaItemListRelationFilter
 }
@@ -247,6 +259,7 @@ export type ItemOrderByWithRelationInput = {
   codTest?: Prisma.SortOrder
   numero?: Prisma.SortOrder
   serie?: Prisma.SortOrder
+  cantOpciones?: Prisma.SortOrder
   test?: Prisma.TestOrderByWithRelationInput
   respuestas?: Prisma.RespuestaItemOrderByRelationAggregateInput
 }
@@ -261,6 +274,7 @@ export type ItemWhereUniqueInput = Prisma.AtLeast<{
   codTest?: Prisma.IntFilter<"Item"> | number
   numero?: Prisma.IntFilter<"Item"> | number
   serie?: Prisma.StringFilter<"Item"> | string
+  cantOpciones?: Prisma.IntFilter<"Item"> | number
   test?: Prisma.XOR<Prisma.TestScalarRelationFilter, Prisma.TestWhereInput>
   respuestas?: Prisma.RespuestaItemListRelationFilter
 }, "idItem">
@@ -272,6 +286,7 @@ export type ItemOrderByWithAggregationInput = {
   codTest?: Prisma.SortOrder
   numero?: Prisma.SortOrder
   serie?: Prisma.SortOrder
+  cantOpciones?: Prisma.SortOrder
   _count?: Prisma.ItemCountOrderByAggregateInput
   _avg?: Prisma.ItemAvgOrderByAggregateInput
   _max?: Prisma.ItemMaxOrderByAggregateInput
@@ -289,6 +304,7 @@ export type ItemScalarWhereWithAggregatesInput = {
   codTest?: Prisma.IntWithAggregatesFilter<"Item"> | number
   numero?: Prisma.IntWithAggregatesFilter<"Item"> | number
   serie?: Prisma.StringWithAggregatesFilter<"Item"> | string
+  cantOpciones?: Prisma.IntWithAggregatesFilter<"Item"> | number
 }
 
 export type ItemCreateInput = {
@@ -296,6 +312,7 @@ export type ItemCreateInput = {
   dificultad?: string | null
   numero: number
   serie: string
+  cantOpciones: number
   test: Prisma.TestCreateNestedOneWithoutItemsInput
   respuestas?: Prisma.RespuestaItemCreateNestedManyWithoutItemInput
 }
@@ -307,6 +324,7 @@ export type ItemUncheckedCreateInput = {
   codTest: number
   numero: number
   serie: string
+  cantOpciones: number
   respuestas?: Prisma.RespuestaItemUncheckedCreateNestedManyWithoutItemInput
 }
 
@@ -315,6 +333,7 @@ export type ItemUpdateInput = {
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numero?: Prisma.IntFieldUpdateOperationsInput | number
   serie?: Prisma.StringFieldUpdateOperationsInput | string
+  cantOpciones?: Prisma.IntFieldUpdateOperationsInput | number
   test?: Prisma.TestUpdateOneRequiredWithoutItemsNestedInput
   respuestas?: Prisma.RespuestaItemUpdateManyWithoutItemNestedInput
 }
@@ -326,6 +345,7 @@ export type ItemUncheckedUpdateInput = {
   codTest?: Prisma.IntFieldUpdateOperationsInput | number
   numero?: Prisma.IntFieldUpdateOperationsInput | number
   serie?: Prisma.StringFieldUpdateOperationsInput | string
+  cantOpciones?: Prisma.IntFieldUpdateOperationsInput | number
   respuestas?: Prisma.RespuestaItemUncheckedUpdateManyWithoutItemNestedInput
 }
 
@@ -336,6 +356,7 @@ export type ItemCreateManyInput = {
   codTest: number
   numero: number
   serie: string
+  cantOpciones: number
 }
 
 export type ItemUpdateManyMutationInput = {
@@ -343,6 +364,7 @@ export type ItemUpdateManyMutationInput = {
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numero?: Prisma.IntFieldUpdateOperationsInput | number
   serie?: Prisma.StringFieldUpdateOperationsInput | string
+  cantOpciones?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ItemUncheckedUpdateManyInput = {
@@ -352,6 +374,7 @@ export type ItemUncheckedUpdateManyInput = {
   codTest?: Prisma.IntFieldUpdateOperationsInput | number
   numero?: Prisma.IntFieldUpdateOperationsInput | number
   serie?: Prisma.StringFieldUpdateOperationsInput | string
+  cantOpciones?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ItemListRelationFilter = {
@@ -371,6 +394,7 @@ export type ItemCountOrderByAggregateInput = {
   codTest?: Prisma.SortOrder
   numero?: Prisma.SortOrder
   serie?: Prisma.SortOrder
+  cantOpciones?: Prisma.SortOrder
 }
 
 export type ItemAvgOrderByAggregateInput = {
@@ -378,6 +402,7 @@ export type ItemAvgOrderByAggregateInput = {
   resCorrecta?: Prisma.SortOrder
   codTest?: Prisma.SortOrder
   numero?: Prisma.SortOrder
+  cantOpciones?: Prisma.SortOrder
 }
 
 export type ItemMaxOrderByAggregateInput = {
@@ -387,6 +412,7 @@ export type ItemMaxOrderByAggregateInput = {
   codTest?: Prisma.SortOrder
   numero?: Prisma.SortOrder
   serie?: Prisma.SortOrder
+  cantOpciones?: Prisma.SortOrder
 }
 
 export type ItemMinOrderByAggregateInput = {
@@ -396,6 +422,7 @@ export type ItemMinOrderByAggregateInput = {
   codTest?: Prisma.SortOrder
   numero?: Prisma.SortOrder
   serie?: Prisma.SortOrder
+  cantOpciones?: Prisma.SortOrder
 }
 
 export type ItemSumOrderByAggregateInput = {
@@ -403,6 +430,7 @@ export type ItemSumOrderByAggregateInput = {
   resCorrecta?: Prisma.SortOrder
   codTest?: Prisma.SortOrder
   numero?: Prisma.SortOrder
+  cantOpciones?: Prisma.SortOrder
 }
 
 export type ItemScalarRelationFilter = {
@@ -471,6 +499,7 @@ export type ItemCreateWithoutTestInput = {
   dificultad?: string | null
   numero: number
   serie: string
+  cantOpciones: number
   respuestas?: Prisma.RespuestaItemCreateNestedManyWithoutItemInput
 }
 
@@ -480,6 +509,7 @@ export type ItemUncheckedCreateWithoutTestInput = {
   dificultad?: string | null
   numero: number
   serie: string
+  cantOpciones: number
   respuestas?: Prisma.RespuestaItemUncheckedCreateNestedManyWithoutItemInput
 }
 
@@ -519,6 +549,7 @@ export type ItemScalarWhereInput = {
   codTest?: Prisma.IntFilter<"Item"> | number
   numero?: Prisma.IntFilter<"Item"> | number
   serie?: Prisma.StringFilter<"Item"> | string
+  cantOpciones?: Prisma.IntFilter<"Item"> | number
 }
 
 export type ItemCreateWithoutRespuestasInput = {
@@ -526,6 +557,7 @@ export type ItemCreateWithoutRespuestasInput = {
   dificultad?: string | null
   numero: number
   serie: string
+  cantOpciones: number
   test: Prisma.TestCreateNestedOneWithoutItemsInput
 }
 
@@ -536,6 +568,7 @@ export type ItemUncheckedCreateWithoutRespuestasInput = {
   codTest: number
   numero: number
   serie: string
+  cantOpciones: number
 }
 
 export type ItemCreateOrConnectWithoutRespuestasInput = {
@@ -559,6 +592,7 @@ export type ItemUpdateWithoutRespuestasInput = {
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numero?: Prisma.IntFieldUpdateOperationsInput | number
   serie?: Prisma.StringFieldUpdateOperationsInput | string
+  cantOpciones?: Prisma.IntFieldUpdateOperationsInput | number
   test?: Prisma.TestUpdateOneRequiredWithoutItemsNestedInput
 }
 
@@ -569,6 +603,7 @@ export type ItemUncheckedUpdateWithoutRespuestasInput = {
   codTest?: Prisma.IntFieldUpdateOperationsInput | number
   numero?: Prisma.IntFieldUpdateOperationsInput | number
   serie?: Prisma.StringFieldUpdateOperationsInput | string
+  cantOpciones?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ItemCreateManyTestInput = {
@@ -577,6 +612,7 @@ export type ItemCreateManyTestInput = {
   dificultad?: string | null
   numero: number
   serie: string
+  cantOpciones: number
 }
 
 export type ItemUpdateWithoutTestInput = {
@@ -584,6 +620,7 @@ export type ItemUpdateWithoutTestInput = {
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numero?: Prisma.IntFieldUpdateOperationsInput | number
   serie?: Prisma.StringFieldUpdateOperationsInput | string
+  cantOpciones?: Prisma.IntFieldUpdateOperationsInput | number
   respuestas?: Prisma.RespuestaItemUpdateManyWithoutItemNestedInput
 }
 
@@ -593,6 +630,7 @@ export type ItemUncheckedUpdateWithoutTestInput = {
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numero?: Prisma.IntFieldUpdateOperationsInput | number
   serie?: Prisma.StringFieldUpdateOperationsInput | string
+  cantOpciones?: Prisma.IntFieldUpdateOperationsInput | number
   respuestas?: Prisma.RespuestaItemUncheckedUpdateManyWithoutItemNestedInput
 }
 
@@ -602,6 +640,7 @@ export type ItemUncheckedUpdateManyWithoutTestInput = {
   dificultad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numero?: Prisma.IntFieldUpdateOperationsInput | number
   serie?: Prisma.StringFieldUpdateOperationsInput | string
+  cantOpciones?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -642,6 +681,7 @@ export type ItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   codTest?: boolean
   numero?: boolean
   serie?: boolean
+  cantOpciones?: boolean
   test?: boolean | Prisma.TestDefaultArgs<ExtArgs>
   respuestas?: boolean | Prisma.Item$respuestasArgs<ExtArgs>
   _count?: boolean | Prisma.ItemCountOutputTypeDefaultArgs<ExtArgs>
@@ -654,6 +694,7 @@ export type ItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   codTest?: boolean
   numero?: boolean
   serie?: boolean
+  cantOpciones?: boolean
   test?: boolean | Prisma.TestDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["item"]>
 
@@ -664,6 +705,7 @@ export type ItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   codTest?: boolean
   numero?: boolean
   serie?: boolean
+  cantOpciones?: boolean
   test?: boolean | Prisma.TestDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["item"]>
 
@@ -674,9 +716,10 @@ export type ItemSelectScalar = {
   codTest?: boolean
   numero?: boolean
   serie?: boolean
+  cantOpciones?: boolean
 }
 
-export type ItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idItem" | "resCorrecta" | "dificultad" | "codTest" | "numero" | "serie", ExtArgs["result"]["item"]>
+export type ItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idItem" | "resCorrecta" | "dificultad" | "codTest" | "numero" | "serie" | "cantOpciones", ExtArgs["result"]["item"]>
 export type ItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   test?: boolean | Prisma.TestDefaultArgs<ExtArgs>
   respuestas?: boolean | Prisma.Item$respuestasArgs<ExtArgs>
@@ -702,6 +745,7 @@ export type $ItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     codTest: number
     numero: number
     serie: string
+    cantOpciones: number
   }, ExtArgs["result"]["item"]>
   composites: {}
 }
@@ -1133,6 +1177,7 @@ export interface ItemFieldRefs {
   readonly codTest: Prisma.FieldRef<"Item", 'Int'>
   readonly numero: Prisma.FieldRef<"Item", 'Int'>
   readonly serie: Prisma.FieldRef<"Item", 'String'>
+  readonly cantOpciones: Prisma.FieldRef<"Item", 'Int'>
 }
     
 
