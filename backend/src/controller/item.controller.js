@@ -10,6 +10,7 @@ export const getAllItems = async (req, res) => {
                 data: []
             });
         }
+        res.status(201).json(items);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal Server Error", error });
