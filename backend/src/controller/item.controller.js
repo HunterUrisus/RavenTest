@@ -21,7 +21,7 @@ export const getItemsByTestId = async (req, res) => {
     try {
         const { testId } = req.params;
         const items = await prisma.item.findMany({
-            where: { testId: parseInt(testId) },
+            where: { codTest: parseInt(testId) },
         });
         res.status(201).json(items);
     } catch (error) {

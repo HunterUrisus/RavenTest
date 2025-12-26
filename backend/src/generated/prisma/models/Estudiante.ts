@@ -217,6 +217,7 @@ export type EstudianteWhereInput = {
   anoIngreso?: Prisma.IntFilter<"Estudiante"> | number
   expVideojuegos?: Prisma.StringNullableFilter<"Estudiante"> | string | null
   respuestas?: Prisma.RespuestaItemListRelationFilter
+  evaluaciones?: Prisma.EvaluacionListRelationFilter
 }
 
 export type EstudianteOrderByWithRelationInput = {
@@ -226,6 +227,7 @@ export type EstudianteOrderByWithRelationInput = {
   anoIngreso?: Prisma.SortOrder
   expVideojuegos?: Prisma.SortOrderInput | Prisma.SortOrder
   respuestas?: Prisma.RespuestaItemOrderByRelationAggregateInput
+  evaluaciones?: Prisma.EvaluacionOrderByRelationAggregateInput
 }
 
 export type EstudianteWhereUniqueInput = Prisma.AtLeast<{
@@ -238,6 +240,7 @@ export type EstudianteWhereUniqueInput = Prisma.AtLeast<{
   anoIngreso?: Prisma.IntFilter<"Estudiante"> | number
   expVideojuegos?: Prisma.StringNullableFilter<"Estudiante"> | string | null
   respuestas?: Prisma.RespuestaItemListRelationFilter
+  evaluaciones?: Prisma.EvaluacionListRelationFilter
 }, "rut">
 
 export type EstudianteOrderByWithAggregationInput = {
@@ -271,6 +274,7 @@ export type EstudianteCreateInput = {
   anoIngreso: number
   expVideojuegos?: string | null
   respuestas?: Prisma.RespuestaItemCreateNestedManyWithoutEstudianteInput
+  evaluaciones?: Prisma.EvaluacionCreateNestedManyWithoutEstudianteInput
 }
 
 export type EstudianteUncheckedCreateInput = {
@@ -280,6 +284,7 @@ export type EstudianteUncheckedCreateInput = {
   anoIngreso: number
   expVideojuegos?: string | null
   respuestas?: Prisma.RespuestaItemUncheckedCreateNestedManyWithoutEstudianteInput
+  evaluaciones?: Prisma.EvaluacionUncheckedCreateNestedManyWithoutEstudianteInput
 }
 
 export type EstudianteUpdateInput = {
@@ -289,6 +294,7 @@ export type EstudianteUpdateInput = {
   anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
   expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   respuestas?: Prisma.RespuestaItemUpdateManyWithoutEstudianteNestedInput
+  evaluaciones?: Prisma.EvaluacionUpdateManyWithoutEstudianteNestedInput
 }
 
 export type EstudianteUncheckedUpdateInput = {
@@ -298,6 +304,7 @@ export type EstudianteUncheckedUpdateInput = {
   anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
   expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   respuestas?: Prisma.RespuestaItemUncheckedUpdateManyWithoutEstudianteNestedInput
+  evaluaciones?: Prisma.EvaluacionUncheckedUpdateManyWithoutEstudianteNestedInput
 }
 
 export type EstudianteCreateManyInput = {
@@ -356,6 +363,11 @@ export type EstudianteSumOrderByAggregateInput = {
   anoIngreso?: Prisma.SortOrder
 }
 
+export type EstudianteNullableScalarRelationFilter = {
+  is?: Prisma.EstudianteWhereInput | null
+  isNot?: Prisma.EstudianteWhereInput | null
+}
+
 export type EstudianteScalarRelationFilter = {
   is?: Prisma.EstudianteWhereInput
   isNot?: Prisma.EstudianteWhereInput
@@ -387,12 +399,28 @@ export type EstudianteCreateNestedOneWithoutRespuestasInput = {
   connect?: Prisma.EstudianteWhereUniqueInput
 }
 
-export type EstudianteUpdateOneRequiredWithoutRespuestasNestedInput = {
+export type EstudianteUpdateOneWithoutRespuestasNestedInput = {
   create?: Prisma.XOR<Prisma.EstudianteCreateWithoutRespuestasInput, Prisma.EstudianteUncheckedCreateWithoutRespuestasInput>
   connectOrCreate?: Prisma.EstudianteCreateOrConnectWithoutRespuestasInput
   upsert?: Prisma.EstudianteUpsertWithoutRespuestasInput
+  disconnect?: Prisma.EstudianteWhereInput | boolean
+  delete?: Prisma.EstudianteWhereInput | boolean
   connect?: Prisma.EstudianteWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.EstudianteUpdateToOneWithWhereWithoutRespuestasInput, Prisma.EstudianteUpdateWithoutRespuestasInput>, Prisma.EstudianteUncheckedUpdateWithoutRespuestasInput>
+}
+
+export type EstudianteCreateNestedOneWithoutEvaluacionesInput = {
+  create?: Prisma.XOR<Prisma.EstudianteCreateWithoutEvaluacionesInput, Prisma.EstudianteUncheckedCreateWithoutEvaluacionesInput>
+  connectOrCreate?: Prisma.EstudianteCreateOrConnectWithoutEvaluacionesInput
+  connect?: Prisma.EstudianteWhereUniqueInput
+}
+
+export type EstudianteUpdateOneRequiredWithoutEvaluacionesNestedInput = {
+  create?: Prisma.XOR<Prisma.EstudianteCreateWithoutEvaluacionesInput, Prisma.EstudianteUncheckedCreateWithoutEvaluacionesInput>
+  connectOrCreate?: Prisma.EstudianteCreateOrConnectWithoutEvaluacionesInput
+  upsert?: Prisma.EstudianteUpsertWithoutEvaluacionesInput
+  connect?: Prisma.EstudianteWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EstudianteUpdateToOneWithWhereWithoutEvaluacionesInput, Prisma.EstudianteUpdateWithoutEvaluacionesInput>, Prisma.EstudianteUncheckedUpdateWithoutEvaluacionesInput>
 }
 
 export type EstudianteCreateWithoutRespuestasInput = {
@@ -401,6 +429,7 @@ export type EstudianteCreateWithoutRespuestasInput = {
   fechaNacimiento: Date | string
   anoIngreso: number
   expVideojuegos?: string | null
+  evaluaciones?: Prisma.EvaluacionCreateNestedManyWithoutEstudianteInput
 }
 
 export type EstudianteUncheckedCreateWithoutRespuestasInput = {
@@ -409,6 +438,7 @@ export type EstudianteUncheckedCreateWithoutRespuestasInput = {
   fechaNacimiento: Date | string
   anoIngreso: number
   expVideojuegos?: string | null
+  evaluaciones?: Prisma.EvaluacionUncheckedCreateNestedManyWithoutEstudianteInput
 }
 
 export type EstudianteCreateOrConnectWithoutRespuestasInput = {
@@ -433,6 +463,7 @@ export type EstudianteUpdateWithoutRespuestasInput = {
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
   expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evaluaciones?: Prisma.EvaluacionUpdateManyWithoutEstudianteNestedInput
 }
 
 export type EstudianteUncheckedUpdateWithoutRespuestasInput = {
@@ -441,6 +472,59 @@ export type EstudianteUncheckedUpdateWithoutRespuestasInput = {
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
   expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evaluaciones?: Prisma.EvaluacionUncheckedUpdateManyWithoutEstudianteNestedInput
+}
+
+export type EstudianteCreateWithoutEvaluacionesInput = {
+  rut: string
+  nombre: string
+  fechaNacimiento: Date | string
+  anoIngreso: number
+  expVideojuegos?: string | null
+  respuestas?: Prisma.RespuestaItemCreateNestedManyWithoutEstudianteInput
+}
+
+export type EstudianteUncheckedCreateWithoutEvaluacionesInput = {
+  rut: string
+  nombre: string
+  fechaNacimiento: Date | string
+  anoIngreso: number
+  expVideojuegos?: string | null
+  respuestas?: Prisma.RespuestaItemUncheckedCreateNestedManyWithoutEstudianteInput
+}
+
+export type EstudianteCreateOrConnectWithoutEvaluacionesInput = {
+  where: Prisma.EstudianteWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstudianteCreateWithoutEvaluacionesInput, Prisma.EstudianteUncheckedCreateWithoutEvaluacionesInput>
+}
+
+export type EstudianteUpsertWithoutEvaluacionesInput = {
+  update: Prisma.XOR<Prisma.EstudianteUpdateWithoutEvaluacionesInput, Prisma.EstudianteUncheckedUpdateWithoutEvaluacionesInput>
+  create: Prisma.XOR<Prisma.EstudianteCreateWithoutEvaluacionesInput, Prisma.EstudianteUncheckedCreateWithoutEvaluacionesInput>
+  where?: Prisma.EstudianteWhereInput
+}
+
+export type EstudianteUpdateToOneWithWhereWithoutEvaluacionesInput = {
+  where?: Prisma.EstudianteWhereInput
+  data: Prisma.XOR<Prisma.EstudianteUpdateWithoutEvaluacionesInput, Prisma.EstudianteUncheckedUpdateWithoutEvaluacionesInput>
+}
+
+export type EstudianteUpdateWithoutEvaluacionesInput = {
+  rut?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
+  expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  respuestas?: Prisma.RespuestaItemUpdateManyWithoutEstudianteNestedInput
+}
+
+export type EstudianteUncheckedUpdateWithoutEvaluacionesInput = {
+  rut?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
+  expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  respuestas?: Prisma.RespuestaItemUncheckedUpdateManyWithoutEstudianteNestedInput
 }
 
 
@@ -450,10 +534,12 @@ export type EstudianteUncheckedUpdateWithoutRespuestasInput = {
 
 export type EstudianteCountOutputType = {
   respuestas: number
+  evaluaciones: number
 }
 
 export type EstudianteCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   respuestas?: boolean | EstudianteCountOutputTypeCountRespuestasArgs
+  evaluaciones?: boolean | EstudianteCountOutputTypeCountEvaluacionesArgs
 }
 
 /**
@@ -473,6 +559,13 @@ export type EstudianteCountOutputTypeCountRespuestasArgs<ExtArgs extends runtime
   where?: Prisma.RespuestaItemWhereInput
 }
 
+/**
+ * EstudianteCountOutputType without action
+ */
+export type EstudianteCountOutputTypeCountEvaluacionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EvaluacionWhereInput
+}
+
 
 export type EstudianteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   rut?: boolean
@@ -481,6 +574,7 @@ export type EstudianteSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   anoIngreso?: boolean
   expVideojuegos?: boolean
   respuestas?: boolean | Prisma.Estudiante$respuestasArgs<ExtArgs>
+  evaluaciones?: boolean | Prisma.Estudiante$evaluacionesArgs<ExtArgs>
   _count?: boolean | Prisma.EstudianteCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["estudiante"]>
 
@@ -511,6 +605,7 @@ export type EstudianteSelectScalar = {
 export type EstudianteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"rut" | "nombre" | "fechaNacimiento" | "anoIngreso" | "expVideojuegos", ExtArgs["result"]["estudiante"]>
 export type EstudianteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   respuestas?: boolean | Prisma.Estudiante$respuestasArgs<ExtArgs>
+  evaluaciones?: boolean | Prisma.Estudiante$evaluacionesArgs<ExtArgs>
   _count?: boolean | Prisma.EstudianteCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EstudianteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -520,6 +615,7 @@ export type $EstudiantePayload<ExtArgs extends runtime.Types.Extensions.Internal
   name: "Estudiante"
   objects: {
     respuestas: Prisma.$RespuestaItemPayload<ExtArgs>[]
+    evaluaciones: Prisma.$EvaluacionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     rut: string
@@ -922,6 +1018,7 @@ readonly fields: EstudianteFieldRefs;
 export interface Prisma__EstudianteClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   respuestas<T extends Prisma.Estudiante$respuestasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estudiante$respuestasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RespuestaItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  evaluaciones<T extends Prisma.Estudiante$evaluacionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estudiante$evaluacionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EvaluacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1365,6 +1462,30 @@ export type Estudiante$respuestasArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.RespuestaItemScalarFieldEnum | Prisma.RespuestaItemScalarFieldEnum[]
+}
+
+/**
+ * Estudiante.evaluaciones
+ */
+export type Estudiante$evaluacionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Evaluacion
+   */
+  select?: Prisma.EvaluacionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Evaluacion
+   */
+  omit?: Prisma.EvaluacionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EvaluacionInclude<ExtArgs> | null
+  where?: Prisma.EvaluacionWhereInput
+  orderBy?: Prisma.EvaluacionOrderByWithRelationInput | Prisma.EvaluacionOrderByWithRelationInput[]
+  cursor?: Prisma.EvaluacionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EvaluacionScalarFieldEnum | Prisma.EvaluacionScalarFieldEnum[]
 }
 
 /**

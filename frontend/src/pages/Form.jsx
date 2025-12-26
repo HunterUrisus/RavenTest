@@ -1,12 +1,13 @@
 import "../styles/Form.css";
 import { useState } from "react";
 
-const Form = () => {
+const Form = ({ onSuccess }) => {
   const [rut, setRut] = useState();
   const [nombre, setNombre] = useState();
   const [fechaNacimiento, setFechaNacimiento] = useState();
   const [anoIngreso, setAnoIngreso] = useState();
   const [expVideojuegos, setExpVideojuegos] = useState();
+  const [testSelected, setTestSelected] = useState("1");
 
   const formatRut = (rut) => {
     let actual = rut.replace(/^0+|[^0-9kK]+/g, "").toUpperCase();
@@ -24,7 +25,6 @@ const Form = () => {
     setRut(valorFormateado);
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,7 +41,7 @@ const Form = () => {
     try {
       const res = await fetch("http://localhost:3000/api/users/", {
         method: "POST",
-        headers: { "Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
 
@@ -52,15 +52,21 @@ const Form = () => {
       }
 
       const data = await res.json();
-      alert("Usuario creado correctamente");
-      console.log(data);
+
+      //Avisa al componente padre que todo salió bien
+      if (onSuccess) {
+        onSuccess(
+          data,
+          Number(testSelected)
+        );
+      }
+
       // limpiar formulario si quieres
       setRut("");
       setNombre("");
       setFechaNacimiento("");
       setAnoIngreso("");
       setExpVideojuegos("");
-
     } catch (error) {
       console.error(error);
       alert("Error de red al crear usuario");
@@ -70,7 +76,6 @@ const Form = () => {
   return (
     <div>
       <div className="main-container">
-        <h1>Test de Raven</h1>
         <p>Por favor completa tus datos:</p>
 
         <form className="formulario" onSubmit={handleSubmit}>
@@ -83,7 +88,6 @@ const Form = () => {
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
           />
-          <br />
           <label>Rut:</label>
           <input
             type="text"
@@ -94,7 +98,6 @@ const Form = () => {
             onChange={handleRutChange}
             maxLength={12}
           />
-          <br />
           <label>Fecha de nacimiento:</label>
           <input
             type="date"
@@ -104,7 +107,6 @@ const Form = () => {
             value={fechaNacimiento}
             onChange={(e) => setFechaNacimiento(e.target.value)}
           />
-          <br />
           <label>Año de ingreso:</label>
           <input
             type="number"
@@ -115,7 +117,6 @@ const Form = () => {
             value={anoIngreso}
             onChange={(e) => setAnoIngreso(e.target.value)}
           />
-          <br />
           <label>Exp en videojuegos:</label>
           <select
             id="experienciaVideojuegos"
@@ -130,8 +131,37 @@ const Form = () => {
             <option value="media">Media</option>
             <option value="alta">Alta</option>
           </select>
+          <div className="test-selector">
+            <div>
+              <label>Test: </label>
+              <input
+                type="radio"
+                id="1"
+                name="testPrevio"
+                value="1"
+                onChange={(e) => setTestSelected(e.target.value)}
+                defaultChecked
+              />
+              <label htmlFor="1">Test 1</label>
+              <input
+                type="radio"
+                id="2"
+                name="testPrevio"
+                value="2"
+                onChange={(e) => setTestSelected(e.target.value)}
+              />
+              <label htmlFor="2">Test 2</label>
+              <input
+                type="radio"
+                id="3"
+                name="testPrevio"
+                value="3"
+                onChange={(e) => setTestSelected(e.target.value)}
+              />
+              <label htmlFor="3">Test 3 (Testing)</label>
+            </div>
+          </div>
 
-          <br />
           <button type="submit">Enviar</button>
         </form>
       </div>

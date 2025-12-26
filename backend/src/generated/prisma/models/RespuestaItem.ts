@@ -28,92 +28,96 @@ export type AggregateRespuestaItem = {
 
 export type RespuestaItemAvgAggregateOutputType = {
   id: number | null
-  idItem: number | null
   respuesta: number | null
   tiempo: number | null
+  idItem: number | null
+  idEvaluacion: number | null
 }
 
 export type RespuestaItemSumAggregateOutputType = {
   id: number | null
-  idItem: number | null
   respuesta: number | null
   tiempo: number | null
+  idItem: number | null
+  idEvaluacion: number | null
 }
 
 export type RespuestaItemMinAggregateOutputType = {
   id: number | null
-  rutEstudiante: string | null
-  idItem: number | null
   respuesta: number | null
-  tiempo: number | null
   esCorrecta: boolean | null
-  fechaIntento: Date | null
+  tiempo: number | null
+  idItem: number | null
+  idEvaluacion: number | null
+  estudianteRut: string | null
 }
 
 export type RespuestaItemMaxAggregateOutputType = {
   id: number | null
-  rutEstudiante: string | null
-  idItem: number | null
   respuesta: number | null
-  tiempo: number | null
   esCorrecta: boolean | null
-  fechaIntento: Date | null
+  tiempo: number | null
+  idItem: number | null
+  idEvaluacion: number | null
+  estudianteRut: string | null
 }
 
 export type RespuestaItemCountAggregateOutputType = {
   id: number
-  rutEstudiante: number
-  idItem: number
   respuesta: number
-  tiempo: number
   esCorrecta: number
-  fechaIntento: number
+  tiempo: number
+  idItem: number
+  idEvaluacion: number
+  estudianteRut: number
   _all: number
 }
 
 
 export type RespuestaItemAvgAggregateInputType = {
   id?: true
-  idItem?: true
   respuesta?: true
   tiempo?: true
+  idItem?: true
+  idEvaluacion?: true
 }
 
 export type RespuestaItemSumAggregateInputType = {
   id?: true
-  idItem?: true
   respuesta?: true
   tiempo?: true
+  idItem?: true
+  idEvaluacion?: true
 }
 
 export type RespuestaItemMinAggregateInputType = {
   id?: true
-  rutEstudiante?: true
-  idItem?: true
   respuesta?: true
-  tiempo?: true
   esCorrecta?: true
-  fechaIntento?: true
+  tiempo?: true
+  idItem?: true
+  idEvaluacion?: true
+  estudianteRut?: true
 }
 
 export type RespuestaItemMaxAggregateInputType = {
   id?: true
-  rutEstudiante?: true
-  idItem?: true
   respuesta?: true
-  tiempo?: true
   esCorrecta?: true
-  fechaIntento?: true
+  tiempo?: true
+  idItem?: true
+  idEvaluacion?: true
+  estudianteRut?: true
 }
 
 export type RespuestaItemCountAggregateInputType = {
   id?: true
-  rutEstudiante?: true
-  idItem?: true
   respuesta?: true
-  tiempo?: true
   esCorrecta?: true
-  fechaIntento?: true
+  tiempo?: true
+  idItem?: true
+  idEvaluacion?: true
+  estudianteRut?: true
   _all?: true
 }
 
@@ -205,12 +209,12 @@ export type RespuestaItemGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 
 export type RespuestaItemGroupByOutputType = {
   id: number
-  rutEstudiante: string
-  idItem: number
   respuesta: number
-  tiempo: number
   esCorrecta: boolean
-  fechaIntento: Date
+  tiempo: number
+  idItem: number
+  idEvaluacion: number
+  estudianteRut: string | null
   _count: RespuestaItemCountAggregateOutputType | null
   _avg: RespuestaItemAvgAggregateOutputType | null
   _sum: RespuestaItemSumAggregateOutputType | null
@@ -238,25 +242,27 @@ export type RespuestaItemWhereInput = {
   OR?: Prisma.RespuestaItemWhereInput[]
   NOT?: Prisma.RespuestaItemWhereInput | Prisma.RespuestaItemWhereInput[]
   id?: Prisma.IntFilter<"RespuestaItem"> | number
-  rutEstudiante?: Prisma.StringFilter<"RespuestaItem"> | string
-  idItem?: Prisma.IntFilter<"RespuestaItem"> | number
   respuesta?: Prisma.IntFilter<"RespuestaItem"> | number
-  tiempo?: Prisma.IntFilter<"RespuestaItem"> | number
   esCorrecta?: Prisma.BoolFilter<"RespuestaItem"> | boolean
-  fechaIntento?: Prisma.DateTimeFilter<"RespuestaItem"> | Date | string
+  tiempo?: Prisma.IntFilter<"RespuestaItem"> | number
+  idItem?: Prisma.IntFilter<"RespuestaItem"> | number
+  idEvaluacion?: Prisma.IntFilter<"RespuestaItem"> | number
+  estudianteRut?: Prisma.StringNullableFilter<"RespuestaItem"> | string | null
   item?: Prisma.XOR<Prisma.ItemScalarRelationFilter, Prisma.ItemWhereInput>
-  estudiante?: Prisma.XOR<Prisma.EstudianteScalarRelationFilter, Prisma.EstudianteWhereInput>
+  evaluacion?: Prisma.XOR<Prisma.EvaluacionScalarRelationFilter, Prisma.EvaluacionWhereInput>
+  estudiante?: Prisma.XOR<Prisma.EstudianteNullableScalarRelationFilter, Prisma.EstudianteWhereInput> | null
 }
 
 export type RespuestaItemOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  rutEstudiante?: Prisma.SortOrder
-  idItem?: Prisma.SortOrder
   respuesta?: Prisma.SortOrder
-  tiempo?: Prisma.SortOrder
   esCorrecta?: Prisma.SortOrder
-  fechaIntento?: Prisma.SortOrder
+  tiempo?: Prisma.SortOrder
+  idItem?: Prisma.SortOrder
+  idEvaluacion?: Prisma.SortOrder
+  estudianteRut?: Prisma.SortOrderInput | Prisma.SortOrder
   item?: Prisma.ItemOrderByWithRelationInput
+  evaluacion?: Prisma.EvaluacionOrderByWithRelationInput
   estudiante?: Prisma.EstudianteOrderByWithRelationInput
 }
 
@@ -265,24 +271,25 @@ export type RespuestaItemWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RespuestaItemWhereInput | Prisma.RespuestaItemWhereInput[]
   OR?: Prisma.RespuestaItemWhereInput[]
   NOT?: Prisma.RespuestaItemWhereInput | Prisma.RespuestaItemWhereInput[]
-  rutEstudiante?: Prisma.StringFilter<"RespuestaItem"> | string
-  idItem?: Prisma.IntFilter<"RespuestaItem"> | number
   respuesta?: Prisma.IntFilter<"RespuestaItem"> | number
-  tiempo?: Prisma.IntFilter<"RespuestaItem"> | number
   esCorrecta?: Prisma.BoolFilter<"RespuestaItem"> | boolean
-  fechaIntento?: Prisma.DateTimeFilter<"RespuestaItem"> | Date | string
+  tiempo?: Prisma.IntFilter<"RespuestaItem"> | number
+  idItem?: Prisma.IntFilter<"RespuestaItem"> | number
+  idEvaluacion?: Prisma.IntFilter<"RespuestaItem"> | number
+  estudianteRut?: Prisma.StringNullableFilter<"RespuestaItem"> | string | null
   item?: Prisma.XOR<Prisma.ItemScalarRelationFilter, Prisma.ItemWhereInput>
-  estudiante?: Prisma.XOR<Prisma.EstudianteScalarRelationFilter, Prisma.EstudianteWhereInput>
+  evaluacion?: Prisma.XOR<Prisma.EvaluacionScalarRelationFilter, Prisma.EvaluacionWhereInput>
+  estudiante?: Prisma.XOR<Prisma.EstudianteNullableScalarRelationFilter, Prisma.EstudianteWhereInput> | null
 }, "id">
 
 export type RespuestaItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  rutEstudiante?: Prisma.SortOrder
-  idItem?: Prisma.SortOrder
   respuesta?: Prisma.SortOrder
-  tiempo?: Prisma.SortOrder
   esCorrecta?: Prisma.SortOrder
-  fechaIntento?: Prisma.SortOrder
+  tiempo?: Prisma.SortOrder
+  idItem?: Prisma.SortOrder
+  idEvaluacion?: Prisma.SortOrder
+  estudianteRut?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.RespuestaItemCountOrderByAggregateInput
   _avg?: Prisma.RespuestaItemAvgOrderByAggregateInput
   _max?: Prisma.RespuestaItemMaxOrderByAggregateInput
@@ -295,77 +302,76 @@ export type RespuestaItemScalarWhereWithAggregatesInput = {
   OR?: Prisma.RespuestaItemScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RespuestaItemScalarWhereWithAggregatesInput | Prisma.RespuestaItemScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"RespuestaItem"> | number
-  rutEstudiante?: Prisma.StringWithAggregatesFilter<"RespuestaItem"> | string
-  idItem?: Prisma.IntWithAggregatesFilter<"RespuestaItem"> | number
   respuesta?: Prisma.IntWithAggregatesFilter<"RespuestaItem"> | number
-  tiempo?: Prisma.IntWithAggregatesFilter<"RespuestaItem"> | number
   esCorrecta?: Prisma.BoolWithAggregatesFilter<"RespuestaItem"> | boolean
-  fechaIntento?: Prisma.DateTimeWithAggregatesFilter<"RespuestaItem"> | Date | string
+  tiempo?: Prisma.IntWithAggregatesFilter<"RespuestaItem"> | number
+  idItem?: Prisma.IntWithAggregatesFilter<"RespuestaItem"> | number
+  idEvaluacion?: Prisma.IntWithAggregatesFilter<"RespuestaItem"> | number
+  estudianteRut?: Prisma.StringNullableWithAggregatesFilter<"RespuestaItem"> | string | null
 }
 
 export type RespuestaItemCreateInput = {
   respuesta: number
-  tiempo: number
   esCorrecta: boolean
-  fechaIntento?: Date | string
+  tiempo: number
   item: Prisma.ItemCreateNestedOneWithoutRespuestasInput
-  estudiante: Prisma.EstudianteCreateNestedOneWithoutRespuestasInput
+  evaluacion: Prisma.EvaluacionCreateNestedOneWithoutRespuestasInput
+  estudiante?: Prisma.EstudianteCreateNestedOneWithoutRespuestasInput
 }
 
 export type RespuestaItemUncheckedCreateInput = {
   id?: number
-  rutEstudiante: string
-  idItem: number
   respuesta: number
-  tiempo: number
   esCorrecta: boolean
-  fechaIntento?: Date | string
+  tiempo: number
+  idItem: number
+  idEvaluacion: number
+  estudianteRut?: string | null
 }
 
 export type RespuestaItemUpdateInput = {
   respuesta?: Prisma.IntFieldUpdateOperationsInput | number
-  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fechaIntento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   item?: Prisma.ItemUpdateOneRequiredWithoutRespuestasNestedInput
-  estudiante?: Prisma.EstudianteUpdateOneRequiredWithoutRespuestasNestedInput
+  evaluacion?: Prisma.EvaluacionUpdateOneRequiredWithoutRespuestasNestedInput
+  estudiante?: Prisma.EstudianteUpdateOneWithoutRespuestasNestedInput
 }
 
 export type RespuestaItemUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  rutEstudiante?: Prisma.StringFieldUpdateOperationsInput | string
-  idItem?: Prisma.IntFieldUpdateOperationsInput | number
   respuesta?: Prisma.IntFieldUpdateOperationsInput | number
-  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fechaIntento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
+  idItem?: Prisma.IntFieldUpdateOperationsInput | number
+  idEvaluacion?: Prisma.IntFieldUpdateOperationsInput | number
+  estudianteRut?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RespuestaItemCreateManyInput = {
   id?: number
-  rutEstudiante: string
-  idItem: number
   respuesta: number
-  tiempo: number
   esCorrecta: boolean
-  fechaIntento?: Date | string
+  tiempo: number
+  idItem: number
+  idEvaluacion: number
+  estudianteRut?: string | null
 }
 
 export type RespuestaItemUpdateManyMutationInput = {
   respuesta?: Prisma.IntFieldUpdateOperationsInput | number
-  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fechaIntento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type RespuestaItemUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  rutEstudiante?: Prisma.StringFieldUpdateOperationsInput | string
-  idItem?: Prisma.IntFieldUpdateOperationsInput | number
   respuesta?: Prisma.IntFieldUpdateOperationsInput | number
-  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fechaIntento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
+  idItem?: Prisma.IntFieldUpdateOperationsInput | number
+  idEvaluacion?: Prisma.IntFieldUpdateOperationsInput | number
+  estudianteRut?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RespuestaItemListRelationFilter = {
@@ -380,46 +386,48 @@ export type RespuestaItemOrderByRelationAggregateInput = {
 
 export type RespuestaItemCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  rutEstudiante?: Prisma.SortOrder
-  idItem?: Prisma.SortOrder
   respuesta?: Prisma.SortOrder
-  tiempo?: Prisma.SortOrder
   esCorrecta?: Prisma.SortOrder
-  fechaIntento?: Prisma.SortOrder
+  tiempo?: Prisma.SortOrder
+  idItem?: Prisma.SortOrder
+  idEvaluacion?: Prisma.SortOrder
+  estudianteRut?: Prisma.SortOrder
 }
 
 export type RespuestaItemAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  idItem?: Prisma.SortOrder
   respuesta?: Prisma.SortOrder
   tiempo?: Prisma.SortOrder
+  idItem?: Prisma.SortOrder
+  idEvaluacion?: Prisma.SortOrder
 }
 
 export type RespuestaItemMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  rutEstudiante?: Prisma.SortOrder
-  idItem?: Prisma.SortOrder
   respuesta?: Prisma.SortOrder
-  tiempo?: Prisma.SortOrder
   esCorrecta?: Prisma.SortOrder
-  fechaIntento?: Prisma.SortOrder
+  tiempo?: Prisma.SortOrder
+  idItem?: Prisma.SortOrder
+  idEvaluacion?: Prisma.SortOrder
+  estudianteRut?: Prisma.SortOrder
 }
 
 export type RespuestaItemMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  rutEstudiante?: Prisma.SortOrder
-  idItem?: Prisma.SortOrder
   respuesta?: Prisma.SortOrder
-  tiempo?: Prisma.SortOrder
   esCorrecta?: Prisma.SortOrder
-  fechaIntento?: Prisma.SortOrder
+  tiempo?: Prisma.SortOrder
+  idItem?: Prisma.SortOrder
+  idEvaluacion?: Prisma.SortOrder
+  estudianteRut?: Prisma.SortOrder
 }
 
 export type RespuestaItemSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  idItem?: Prisma.SortOrder
   respuesta?: Prisma.SortOrder
   tiempo?: Prisma.SortOrder
+  idItem?: Prisma.SortOrder
+  idEvaluacion?: Prisma.SortOrder
 }
 
 export type RespuestaItemCreateNestedManyWithoutEstudianteInput = {
@@ -510,21 +518,63 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type RespuestaItemCreateNestedManyWithoutEvaluacionInput = {
+  create?: Prisma.XOR<Prisma.RespuestaItemCreateWithoutEvaluacionInput, Prisma.RespuestaItemUncheckedCreateWithoutEvaluacionInput> | Prisma.RespuestaItemCreateWithoutEvaluacionInput[] | Prisma.RespuestaItemUncheckedCreateWithoutEvaluacionInput[]
+  connectOrCreate?: Prisma.RespuestaItemCreateOrConnectWithoutEvaluacionInput | Prisma.RespuestaItemCreateOrConnectWithoutEvaluacionInput[]
+  createMany?: Prisma.RespuestaItemCreateManyEvaluacionInputEnvelope
+  connect?: Prisma.RespuestaItemWhereUniqueInput | Prisma.RespuestaItemWhereUniqueInput[]
+}
+
+export type RespuestaItemUncheckedCreateNestedManyWithoutEvaluacionInput = {
+  create?: Prisma.XOR<Prisma.RespuestaItemCreateWithoutEvaluacionInput, Prisma.RespuestaItemUncheckedCreateWithoutEvaluacionInput> | Prisma.RespuestaItemCreateWithoutEvaluacionInput[] | Prisma.RespuestaItemUncheckedCreateWithoutEvaluacionInput[]
+  connectOrCreate?: Prisma.RespuestaItemCreateOrConnectWithoutEvaluacionInput | Prisma.RespuestaItemCreateOrConnectWithoutEvaluacionInput[]
+  createMany?: Prisma.RespuestaItemCreateManyEvaluacionInputEnvelope
+  connect?: Prisma.RespuestaItemWhereUniqueInput | Prisma.RespuestaItemWhereUniqueInput[]
+}
+
+export type RespuestaItemUpdateManyWithoutEvaluacionNestedInput = {
+  create?: Prisma.XOR<Prisma.RespuestaItemCreateWithoutEvaluacionInput, Prisma.RespuestaItemUncheckedCreateWithoutEvaluacionInput> | Prisma.RespuestaItemCreateWithoutEvaluacionInput[] | Prisma.RespuestaItemUncheckedCreateWithoutEvaluacionInput[]
+  connectOrCreate?: Prisma.RespuestaItemCreateOrConnectWithoutEvaluacionInput | Prisma.RespuestaItemCreateOrConnectWithoutEvaluacionInput[]
+  upsert?: Prisma.RespuestaItemUpsertWithWhereUniqueWithoutEvaluacionInput | Prisma.RespuestaItemUpsertWithWhereUniqueWithoutEvaluacionInput[]
+  createMany?: Prisma.RespuestaItemCreateManyEvaluacionInputEnvelope
+  set?: Prisma.RespuestaItemWhereUniqueInput | Prisma.RespuestaItemWhereUniqueInput[]
+  disconnect?: Prisma.RespuestaItemWhereUniqueInput | Prisma.RespuestaItemWhereUniqueInput[]
+  delete?: Prisma.RespuestaItemWhereUniqueInput | Prisma.RespuestaItemWhereUniqueInput[]
+  connect?: Prisma.RespuestaItemWhereUniqueInput | Prisma.RespuestaItemWhereUniqueInput[]
+  update?: Prisma.RespuestaItemUpdateWithWhereUniqueWithoutEvaluacionInput | Prisma.RespuestaItemUpdateWithWhereUniqueWithoutEvaluacionInput[]
+  updateMany?: Prisma.RespuestaItemUpdateManyWithWhereWithoutEvaluacionInput | Prisma.RespuestaItemUpdateManyWithWhereWithoutEvaluacionInput[]
+  deleteMany?: Prisma.RespuestaItemScalarWhereInput | Prisma.RespuestaItemScalarWhereInput[]
+}
+
+export type RespuestaItemUncheckedUpdateManyWithoutEvaluacionNestedInput = {
+  create?: Prisma.XOR<Prisma.RespuestaItemCreateWithoutEvaluacionInput, Prisma.RespuestaItemUncheckedCreateWithoutEvaluacionInput> | Prisma.RespuestaItemCreateWithoutEvaluacionInput[] | Prisma.RespuestaItemUncheckedCreateWithoutEvaluacionInput[]
+  connectOrCreate?: Prisma.RespuestaItemCreateOrConnectWithoutEvaluacionInput | Prisma.RespuestaItemCreateOrConnectWithoutEvaluacionInput[]
+  upsert?: Prisma.RespuestaItemUpsertWithWhereUniqueWithoutEvaluacionInput | Prisma.RespuestaItemUpsertWithWhereUniqueWithoutEvaluacionInput[]
+  createMany?: Prisma.RespuestaItemCreateManyEvaluacionInputEnvelope
+  set?: Prisma.RespuestaItemWhereUniqueInput | Prisma.RespuestaItemWhereUniqueInput[]
+  disconnect?: Prisma.RespuestaItemWhereUniqueInput | Prisma.RespuestaItemWhereUniqueInput[]
+  delete?: Prisma.RespuestaItemWhereUniqueInput | Prisma.RespuestaItemWhereUniqueInput[]
+  connect?: Prisma.RespuestaItemWhereUniqueInput | Prisma.RespuestaItemWhereUniqueInput[]
+  update?: Prisma.RespuestaItemUpdateWithWhereUniqueWithoutEvaluacionInput | Prisma.RespuestaItemUpdateWithWhereUniqueWithoutEvaluacionInput[]
+  updateMany?: Prisma.RespuestaItemUpdateManyWithWhereWithoutEvaluacionInput | Prisma.RespuestaItemUpdateManyWithWhereWithoutEvaluacionInput[]
+  deleteMany?: Prisma.RespuestaItemScalarWhereInput | Prisma.RespuestaItemScalarWhereInput[]
+}
+
 export type RespuestaItemCreateWithoutEstudianteInput = {
   respuesta: number
-  tiempo: number
   esCorrecta: boolean
-  fechaIntento?: Date | string
+  tiempo: number
   item: Prisma.ItemCreateNestedOneWithoutRespuestasInput
+  evaluacion: Prisma.EvaluacionCreateNestedOneWithoutRespuestasInput
 }
 
 export type RespuestaItemUncheckedCreateWithoutEstudianteInput = {
   id?: number
-  idItem: number
   respuesta: number
-  tiempo: number
   esCorrecta: boolean
-  fechaIntento?: Date | string
+  tiempo: number
+  idItem: number
+  idEvaluacion: number
 }
 
 export type RespuestaItemCreateOrConnectWithoutEstudianteInput = {
@@ -558,29 +608,29 @@ export type RespuestaItemScalarWhereInput = {
   OR?: Prisma.RespuestaItemScalarWhereInput[]
   NOT?: Prisma.RespuestaItemScalarWhereInput | Prisma.RespuestaItemScalarWhereInput[]
   id?: Prisma.IntFilter<"RespuestaItem"> | number
-  rutEstudiante?: Prisma.StringFilter<"RespuestaItem"> | string
-  idItem?: Prisma.IntFilter<"RespuestaItem"> | number
   respuesta?: Prisma.IntFilter<"RespuestaItem"> | number
-  tiempo?: Prisma.IntFilter<"RespuestaItem"> | number
   esCorrecta?: Prisma.BoolFilter<"RespuestaItem"> | boolean
-  fechaIntento?: Prisma.DateTimeFilter<"RespuestaItem"> | Date | string
+  tiempo?: Prisma.IntFilter<"RespuestaItem"> | number
+  idItem?: Prisma.IntFilter<"RespuestaItem"> | number
+  idEvaluacion?: Prisma.IntFilter<"RespuestaItem"> | number
+  estudianteRut?: Prisma.StringNullableFilter<"RespuestaItem"> | string | null
 }
 
 export type RespuestaItemCreateWithoutItemInput = {
   respuesta: number
-  tiempo: number
   esCorrecta: boolean
-  fechaIntento?: Date | string
-  estudiante: Prisma.EstudianteCreateNestedOneWithoutRespuestasInput
+  tiempo: number
+  evaluacion: Prisma.EvaluacionCreateNestedOneWithoutRespuestasInput
+  estudiante?: Prisma.EstudianteCreateNestedOneWithoutRespuestasInput
 }
 
 export type RespuestaItemUncheckedCreateWithoutItemInput = {
   id?: number
-  rutEstudiante: string
   respuesta: number
-  tiempo: number
   esCorrecta: boolean
-  fechaIntento?: Date | string
+  tiempo: number
+  idEvaluacion: number
+  estudianteRut?: string | null
 }
 
 export type RespuestaItemCreateOrConnectWithoutItemInput = {
@@ -609,152 +659,237 @@ export type RespuestaItemUpdateManyWithWhereWithoutItemInput = {
   data: Prisma.XOR<Prisma.RespuestaItemUpdateManyMutationInput, Prisma.RespuestaItemUncheckedUpdateManyWithoutItemInput>
 }
 
+export type RespuestaItemCreateWithoutEvaluacionInput = {
+  respuesta: number
+  esCorrecta: boolean
+  tiempo: number
+  item: Prisma.ItemCreateNestedOneWithoutRespuestasInput
+  estudiante?: Prisma.EstudianteCreateNestedOneWithoutRespuestasInput
+}
+
+export type RespuestaItemUncheckedCreateWithoutEvaluacionInput = {
+  id?: number
+  respuesta: number
+  esCorrecta: boolean
+  tiempo: number
+  idItem: number
+  estudianteRut?: string | null
+}
+
+export type RespuestaItemCreateOrConnectWithoutEvaluacionInput = {
+  where: Prisma.RespuestaItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.RespuestaItemCreateWithoutEvaluacionInput, Prisma.RespuestaItemUncheckedCreateWithoutEvaluacionInput>
+}
+
+export type RespuestaItemCreateManyEvaluacionInputEnvelope = {
+  data: Prisma.RespuestaItemCreateManyEvaluacionInput | Prisma.RespuestaItemCreateManyEvaluacionInput[]
+  skipDuplicates?: boolean
+}
+
+export type RespuestaItemUpsertWithWhereUniqueWithoutEvaluacionInput = {
+  where: Prisma.RespuestaItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.RespuestaItemUpdateWithoutEvaluacionInput, Prisma.RespuestaItemUncheckedUpdateWithoutEvaluacionInput>
+  create: Prisma.XOR<Prisma.RespuestaItemCreateWithoutEvaluacionInput, Prisma.RespuestaItemUncheckedCreateWithoutEvaluacionInput>
+}
+
+export type RespuestaItemUpdateWithWhereUniqueWithoutEvaluacionInput = {
+  where: Prisma.RespuestaItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.RespuestaItemUpdateWithoutEvaluacionInput, Prisma.RespuestaItemUncheckedUpdateWithoutEvaluacionInput>
+}
+
+export type RespuestaItemUpdateManyWithWhereWithoutEvaluacionInput = {
+  where: Prisma.RespuestaItemScalarWhereInput
+  data: Prisma.XOR<Prisma.RespuestaItemUpdateManyMutationInput, Prisma.RespuestaItemUncheckedUpdateManyWithoutEvaluacionInput>
+}
+
 export type RespuestaItemCreateManyEstudianteInput = {
   id?: number
-  idItem: number
   respuesta: number
-  tiempo: number
   esCorrecta: boolean
-  fechaIntento?: Date | string
+  tiempo: number
+  idItem: number
+  idEvaluacion: number
 }
 
 export type RespuestaItemUpdateWithoutEstudianteInput = {
   respuesta?: Prisma.IntFieldUpdateOperationsInput | number
-  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fechaIntento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   item?: Prisma.ItemUpdateOneRequiredWithoutRespuestasNestedInput
+  evaluacion?: Prisma.EvaluacionUpdateOneRequiredWithoutRespuestasNestedInput
 }
 
 export type RespuestaItemUncheckedUpdateWithoutEstudianteInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  idItem?: Prisma.IntFieldUpdateOperationsInput | number
   respuesta?: Prisma.IntFieldUpdateOperationsInput | number
-  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fechaIntento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
+  idItem?: Prisma.IntFieldUpdateOperationsInput | number
+  idEvaluacion?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type RespuestaItemUncheckedUpdateManyWithoutEstudianteInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  idItem?: Prisma.IntFieldUpdateOperationsInput | number
   respuesta?: Prisma.IntFieldUpdateOperationsInput | number
-  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fechaIntento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
+  idItem?: Prisma.IntFieldUpdateOperationsInput | number
+  idEvaluacion?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type RespuestaItemCreateManyItemInput = {
   id?: number
-  rutEstudiante: string
   respuesta: number
-  tiempo: number
   esCorrecta: boolean
-  fechaIntento?: Date | string
+  tiempo: number
+  idEvaluacion: number
+  estudianteRut?: string | null
 }
 
 export type RespuestaItemUpdateWithoutItemInput = {
   respuesta?: Prisma.IntFieldUpdateOperationsInput | number
-  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fechaIntento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  estudiante?: Prisma.EstudianteUpdateOneRequiredWithoutRespuestasNestedInput
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
+  evaluacion?: Prisma.EvaluacionUpdateOneRequiredWithoutRespuestasNestedInput
+  estudiante?: Prisma.EstudianteUpdateOneWithoutRespuestasNestedInput
 }
 
 export type RespuestaItemUncheckedUpdateWithoutItemInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  rutEstudiante?: Prisma.StringFieldUpdateOperationsInput | string
   respuesta?: Prisma.IntFieldUpdateOperationsInput | number
-  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fechaIntento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
+  idEvaluacion?: Prisma.IntFieldUpdateOperationsInput | number
+  estudianteRut?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RespuestaItemUncheckedUpdateManyWithoutItemInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  rutEstudiante?: Prisma.StringFieldUpdateOperationsInput | string
   respuesta?: Prisma.IntFieldUpdateOperationsInput | number
-  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
   esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fechaIntento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
+  idEvaluacion?: Prisma.IntFieldUpdateOperationsInput | number
+  estudianteRut?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type RespuestaItemCreateManyEvaluacionInput = {
+  id?: number
+  respuesta: number
+  esCorrecta: boolean
+  tiempo: number
+  idItem: number
+  estudianteRut?: string | null
+}
+
+export type RespuestaItemUpdateWithoutEvaluacionInput = {
+  respuesta?: Prisma.IntFieldUpdateOperationsInput | number
+  esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
+  item?: Prisma.ItemUpdateOneRequiredWithoutRespuestasNestedInput
+  estudiante?: Prisma.EstudianteUpdateOneWithoutRespuestasNestedInput
+}
+
+export type RespuestaItemUncheckedUpdateWithoutEvaluacionInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  respuesta?: Prisma.IntFieldUpdateOperationsInput | number
+  esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
+  idItem?: Prisma.IntFieldUpdateOperationsInput | number
+  estudianteRut?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type RespuestaItemUncheckedUpdateManyWithoutEvaluacionInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  respuesta?: Prisma.IntFieldUpdateOperationsInput | number
+  esCorrecta?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tiempo?: Prisma.IntFieldUpdateOperationsInput | number
+  idItem?: Prisma.IntFieldUpdateOperationsInput | number
+  estudianteRut?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
 
 export type RespuestaItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  rutEstudiante?: boolean
-  idItem?: boolean
   respuesta?: boolean
-  tiempo?: boolean
   esCorrecta?: boolean
-  fechaIntento?: boolean
+  tiempo?: boolean
+  idItem?: boolean
+  idEvaluacion?: boolean
+  estudianteRut?: boolean
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
-  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
+  evaluacion?: boolean | Prisma.EvaluacionDefaultArgs<ExtArgs>
+  estudiante?: boolean | Prisma.RespuestaItem$estudianteArgs<ExtArgs>
 }, ExtArgs["result"]["respuestaItem"]>
 
 export type RespuestaItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  rutEstudiante?: boolean
-  idItem?: boolean
   respuesta?: boolean
-  tiempo?: boolean
   esCorrecta?: boolean
-  fechaIntento?: boolean
+  tiempo?: boolean
+  idItem?: boolean
+  idEvaluacion?: boolean
+  estudianteRut?: boolean
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
-  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
+  evaluacion?: boolean | Prisma.EvaluacionDefaultArgs<ExtArgs>
+  estudiante?: boolean | Prisma.RespuestaItem$estudianteArgs<ExtArgs>
 }, ExtArgs["result"]["respuestaItem"]>
 
 export type RespuestaItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  rutEstudiante?: boolean
-  idItem?: boolean
   respuesta?: boolean
-  tiempo?: boolean
   esCorrecta?: boolean
-  fechaIntento?: boolean
+  tiempo?: boolean
+  idItem?: boolean
+  idEvaluacion?: boolean
+  estudianteRut?: boolean
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
-  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
+  evaluacion?: boolean | Prisma.EvaluacionDefaultArgs<ExtArgs>
+  estudiante?: boolean | Prisma.RespuestaItem$estudianteArgs<ExtArgs>
 }, ExtArgs["result"]["respuestaItem"]>
 
 export type RespuestaItemSelectScalar = {
   id?: boolean
-  rutEstudiante?: boolean
-  idItem?: boolean
   respuesta?: boolean
-  tiempo?: boolean
   esCorrecta?: boolean
-  fechaIntento?: boolean
+  tiempo?: boolean
+  idItem?: boolean
+  idEvaluacion?: boolean
+  estudianteRut?: boolean
 }
 
-export type RespuestaItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "rutEstudiante" | "idItem" | "respuesta" | "tiempo" | "esCorrecta" | "fechaIntento", ExtArgs["result"]["respuestaItem"]>
+export type RespuestaItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "respuesta" | "esCorrecta" | "tiempo" | "idItem" | "idEvaluacion" | "estudianteRut", ExtArgs["result"]["respuestaItem"]>
 export type RespuestaItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
-  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
+  evaluacion?: boolean | Prisma.EvaluacionDefaultArgs<ExtArgs>
+  estudiante?: boolean | Prisma.RespuestaItem$estudianteArgs<ExtArgs>
 }
 export type RespuestaItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
-  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
+  evaluacion?: boolean | Prisma.EvaluacionDefaultArgs<ExtArgs>
+  estudiante?: boolean | Prisma.RespuestaItem$estudianteArgs<ExtArgs>
 }
 export type RespuestaItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
-  estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
+  evaluacion?: boolean | Prisma.EvaluacionDefaultArgs<ExtArgs>
+  estudiante?: boolean | Prisma.RespuestaItem$estudianteArgs<ExtArgs>
 }
 
 export type $RespuestaItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "RespuestaItem"
   objects: {
     item: Prisma.$ItemPayload<ExtArgs>
-    estudiante: Prisma.$EstudiantePayload<ExtArgs>
+    evaluacion: Prisma.$EvaluacionPayload<ExtArgs>
+    estudiante: Prisma.$EstudiantePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    rutEstudiante: string
-    idItem: number
     respuesta: number
-    tiempo: number
     esCorrecta: boolean
-    fechaIntento: Date
+    tiempo: number
+    idItem: number
+    idEvaluacion: number
+    estudianteRut: string | null
   }, ExtArgs["result"]["respuestaItem"]>
   composites: {}
 }
@@ -1150,7 +1285,8 @@ readonly fields: RespuestaItemFieldRefs;
 export interface Prisma__RespuestaItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   item<T extends Prisma.ItemDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ItemDefaultArgs<ExtArgs>>): Prisma.Prisma__ItemClient<runtime.Types.Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  estudiante<T extends Prisma.EstudianteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstudianteDefaultArgs<ExtArgs>>): Prisma.Prisma__EstudianteClient<runtime.Types.Result.GetResult<Prisma.$EstudiantePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  evaluacion<T extends Prisma.EvaluacionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EvaluacionDefaultArgs<ExtArgs>>): Prisma.Prisma__EvaluacionClient<runtime.Types.Result.GetResult<Prisma.$EvaluacionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  estudiante<T extends Prisma.RespuestaItem$estudianteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RespuestaItem$estudianteArgs<ExtArgs>>): Prisma.Prisma__EstudianteClient<runtime.Types.Result.GetResult<Prisma.$EstudiantePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1181,12 +1317,12 @@ export interface Prisma__RespuestaItemClient<T, Null = never, ExtArgs extends ru
  */
 export interface RespuestaItemFieldRefs {
   readonly id: Prisma.FieldRef<"RespuestaItem", 'Int'>
-  readonly rutEstudiante: Prisma.FieldRef<"RespuestaItem", 'String'>
-  readonly idItem: Prisma.FieldRef<"RespuestaItem", 'Int'>
   readonly respuesta: Prisma.FieldRef<"RespuestaItem", 'Int'>
-  readonly tiempo: Prisma.FieldRef<"RespuestaItem", 'Int'>
   readonly esCorrecta: Prisma.FieldRef<"RespuestaItem", 'Boolean'>
-  readonly fechaIntento: Prisma.FieldRef<"RespuestaItem", 'DateTime'>
+  readonly tiempo: Prisma.FieldRef<"RespuestaItem", 'Int'>
+  readonly idItem: Prisma.FieldRef<"RespuestaItem", 'Int'>
+  readonly idEvaluacion: Prisma.FieldRef<"RespuestaItem", 'Int'>
+  readonly estudianteRut: Prisma.FieldRef<"RespuestaItem", 'String'>
 }
     
 
@@ -1580,6 +1716,25 @@ export type RespuestaItemDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many RespuestaItems to delete.
    */
   limit?: number
+}
+
+/**
+ * RespuestaItem.estudiante
+ */
+export type RespuestaItem$estudianteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Estudiante
+   */
+  select?: Prisma.EstudianteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Estudiante
+   */
+  omit?: Prisma.EstudianteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstudianteInclude<ExtArgs> | null
+  where?: Prisma.EstudianteWhereInput
 }
 
 /**

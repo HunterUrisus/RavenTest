@@ -37,7 +37,7 @@ export const getTestById = async (req, res) => {
     try {
         const { id } = req.params;
         const test = await prisma.test.findUnique({
-            where: { idTest: parseInt(id) },
+            where: { codTest: parseInt(id) },
         });
         res.status(201).json(test);
     } catch (error) {

@@ -37,3 +37,8 @@ export type Item = Prisma.ItemModel
  * 
  */
 export type RespuestaItem = Prisma.RespuestaItemModel
+/**
+ * Model Evaluacion
+ * 
+ */
+export type Evaluacion = Prisma.EvaluacionModel

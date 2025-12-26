@@ -4,8 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './styles/index.css'
 import Root from "./pages/Root.jsx";
 import Test from "./pages/Test.jsx";
-import Form from "./pages/Form.jsx";
 import Error404 from "./pages/Error404.jsx";
+import TestPage from "./pages/TestPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,16 +15,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/test",
-        element: <Form />,
+        element: <TestPage />,
       },
-      /*{
-        path: "/users",
-        element: (
-          <ProtectedRoute allowedRoles={["administrador"]}>
-            <Users />
-          </ProtectedRoute>
-        ),
-      }*/
+      {
+        path: "/raven",
+        element: <Test />
+      }
     ],
   },
 ]);

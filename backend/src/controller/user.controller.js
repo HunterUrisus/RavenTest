@@ -62,8 +62,10 @@ export async function getUserById(req, res){
 export const createUser = async (req, res) => {
   const { rut, nombre, fechaNacimiento, anoIngreso, expVideojuegos } = req.body;
   try {
-    const newUser = await prisma.estudiante.create({
-      data: {
+    const newUser = await prisma.estudiante.upsert({
+      where: { rut },
+      update: {},
+      create: {
         rut,
         nombre,
         fechaNacimiento: new Date(fechaNacimiento),//esto es para convertir el string a date

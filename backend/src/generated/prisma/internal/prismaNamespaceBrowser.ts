@@ -54,7 +54,8 @@ export const ModelName = {
   Estudiante: 'Estudiante',
   Test: 'Test',
   Item: 'Item',
-  RespuestaItem: 'RespuestaItem'
+  RespuestaItem: 'RespuestaItem',
+  Evaluacion: 'Evaluacion'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -108,15 +109,26 @@ export type ItemScalarFieldEnum = (typeof ItemScalarFieldEnum)[keyof typeof Item
 
 export const RespuestaItemScalarFieldEnum = {
   id: 'id',
-  rutEstudiante: 'rutEstudiante',
-  idItem: 'idItem',
   respuesta: 'respuesta',
-  tiempo: 'tiempo',
   esCorrecta: 'esCorrecta',
-  fechaIntento: 'fechaIntento'
+  tiempo: 'tiempo',
+  idItem: 'idItem',
+  idEvaluacion: 'idEvaluacion',
+  estudianteRut: 'estudianteRut'
 } as const
 
 export type RespuestaItemScalarFieldEnum = (typeof RespuestaItemScalarFieldEnum)[keyof typeof RespuestaItemScalarFieldEnum]
+
+
+export const EvaluacionScalarFieldEnum = {
+  id: 'id',
+  fecha: 'fecha',
+  puntaje: 'puntaje',
+  rutEstudiante: 'rutEstudiante',
+  codTest: 'codTest'
+} as const
+
+export type EvaluacionScalarFieldEnum = (typeof EvaluacionScalarFieldEnum)[keyof typeof EvaluacionScalarFieldEnum]
 
 
 export const SortOrder = {

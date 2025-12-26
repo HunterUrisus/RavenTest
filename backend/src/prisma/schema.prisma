@@ -14,35 +14,54 @@ model Estudiante {
   anoIngreso      Int
   expVideojuegos  String?
   respuestas      RespuestaItem[]
+  evaluaciones     Evaluacion[]
 }
 
 model Test {
-  codTest     Int     @id @default(autoincrement())
+  codTest     Int          @id @default(autoincrement())
   descripcion String?
   tiempoMax   Int?
   items       Item[]
+  evaluaciones Evaluacion[]
 }
 
 model Item {
-  idItem      Int             @id @default(autoincrement())
-  resCorrecta Int
-  dificultad  String?
-  codTest     Int
-  numero      Int
-  serie       String
+  idItem       Int             @id @default(autoincrement())
+  resCorrecta  Int
+  dificultad   String?
+  codTest      Int
+  numero       Int
+  serie        String
   cantOpciones Int
-  test        Test            @relation(fields: [codTest], references: [codTest])
-  respuestas  RespuestaItem[]
+  test         Test            @relation(fields: [codTest], references: [codTest])
+  respuestas   RespuestaItem[]
 }
 
 model RespuestaItem {
-  id            Int        @id @default(autoincrement())
+  id         Int     @id @default(autoincrement())
+  respuesta  Int
+  esCorrecta Boolean
+  tiempo     Int
+
+  idItem Int
+  item   Item @relation(fields: [idItem], references: [idItem])
+
+  idEvaluacion  Int
+  evaluacion    Evaluacion  @relation(fields: [idEvaluacion], references: [id])
+  estudiante    Estudiante? @relation(fields: [estudianteRut], references: [rut])
+  estudianteRut String?
+}
+
+model Evaluacion {
+  id      Int      @id @default(autoincrement())
+  fecha   DateTime @default(now())
+  puntaje Int
+
   rutEstudiante String
-  idItem        Int
-  respuesta     Int
-  tiempo        Int
-  esCorrecta    Boolean
-  fechaIntento  DateTime   @default(now())
-  item          Item       @relation(fields: [idItem], references: [idItem])
   estudiante    Estudiante @relation(fields: [rutEstudiante], references: [rut])
+
+  codTest Int
+  test    Test @relation(fields: [codTest], references: [codTest])
+
+  respuestas RespuestaItem[]
 }

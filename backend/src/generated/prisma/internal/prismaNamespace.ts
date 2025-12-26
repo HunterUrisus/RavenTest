@@ -387,7 +387,8 @@ export const ModelName = {
   Estudiante: 'Estudiante',
   Test: 'Test',
   Item: 'Item',
-  RespuestaItem: 'RespuestaItem'
+  RespuestaItem: 'RespuestaItem',
+  Evaluacion: 'Evaluacion'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -403,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "estudiante" | "test" | "item" | "respuestaItem"
+    modelProps: "estudiante" | "test" | "item" | "respuestaItem" | "evaluacion"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -703,6 +704,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Evaluacion: {
+      payload: Prisma.$EvaluacionPayload<ExtArgs>
+      fields: Prisma.EvaluacionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EvaluacionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvaluacionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EvaluacionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvaluacionPayload>
+        }
+        findFirst: {
+          args: Prisma.EvaluacionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvaluacionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EvaluacionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvaluacionPayload>
+        }
+        findMany: {
+          args: Prisma.EvaluacionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvaluacionPayload>[]
+        }
+        create: {
+          args: Prisma.EvaluacionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvaluacionPayload>
+        }
+        createMany: {
+          args: Prisma.EvaluacionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EvaluacionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvaluacionPayload>[]
+        }
+        delete: {
+          args: Prisma.EvaluacionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvaluacionPayload>
+        }
+        update: {
+          args: Prisma.EvaluacionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvaluacionPayload>
+        }
+        deleteMany: {
+          args: Prisma.EvaluacionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EvaluacionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EvaluacionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvaluacionPayload>[]
+        }
+        upsert: {
+          args: Prisma.EvaluacionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvaluacionPayload>
+        }
+        aggregate: {
+          args: Prisma.EvaluacionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEvaluacion>
+        }
+        groupBy: {
+          args: Prisma.EvaluacionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EvaluacionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EvaluacionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EvaluacionCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -777,15 +852,26 @@ export type ItemScalarFieldEnum = (typeof ItemScalarFieldEnum)[keyof typeof Item
 
 export const RespuestaItemScalarFieldEnum = {
   id: 'id',
-  rutEstudiante: 'rutEstudiante',
-  idItem: 'idItem',
   respuesta: 'respuesta',
-  tiempo: 'tiempo',
   esCorrecta: 'esCorrecta',
-  fechaIntento: 'fechaIntento'
+  tiempo: 'tiempo',
+  idItem: 'idItem',
+  idEvaluacion: 'idEvaluacion',
+  estudianteRut: 'estudianteRut'
 } as const
 
 export type RespuestaItemScalarFieldEnum = (typeof RespuestaItemScalarFieldEnum)[keyof typeof RespuestaItemScalarFieldEnum]
+
+
+export const EvaluacionScalarFieldEnum = {
+  id: 'id',
+  fecha: 'fecha',
+  puntaje: 'puntaje',
+  rutEstudiante: 'rutEstudiante',
+  codTest: 'codTest'
+} as const
+
+export type EvaluacionScalarFieldEnum = (typeof EvaluacionScalarFieldEnum)[keyof typeof EvaluacionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -979,6 +1065,7 @@ export type GlobalOmitConfig = {
   test?: Prisma.TestOmit
   item?: Prisma.ItemOmit
   respuestaItem?: Prisma.RespuestaItemOmit
+  evaluacion?: Prisma.EvaluacionOmit
 }
 
 /* Types for Logging */

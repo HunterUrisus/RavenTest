@@ -205,6 +205,7 @@ export type TestWhereInput = {
   descripcion?: Prisma.StringNullableFilter<"Test"> | string | null
   tiempoMax?: Prisma.IntNullableFilter<"Test"> | number | null
   items?: Prisma.ItemListRelationFilter
+  evaluaciones?: Prisma.EvaluacionListRelationFilter
 }
 
 export type TestOrderByWithRelationInput = {
@@ -212,6 +213,7 @@ export type TestOrderByWithRelationInput = {
   descripcion?: Prisma.SortOrderInput | Prisma.SortOrder
   tiempoMax?: Prisma.SortOrderInput | Prisma.SortOrder
   items?: Prisma.ItemOrderByRelationAggregateInput
+  evaluaciones?: Prisma.EvaluacionOrderByRelationAggregateInput
 }
 
 export type TestWhereUniqueInput = Prisma.AtLeast<{
@@ -222,6 +224,7 @@ export type TestWhereUniqueInput = Prisma.AtLeast<{
   descripcion?: Prisma.StringNullableFilter<"Test"> | string | null
   tiempoMax?: Prisma.IntNullableFilter<"Test"> | number | null
   items?: Prisma.ItemListRelationFilter
+  evaluaciones?: Prisma.EvaluacionListRelationFilter
 }, "codTest">
 
 export type TestOrderByWithAggregationInput = {
@@ -248,6 +251,7 @@ export type TestCreateInput = {
   descripcion?: string | null
   tiempoMax?: number | null
   items?: Prisma.ItemCreateNestedManyWithoutTestInput
+  evaluaciones?: Prisma.EvaluacionCreateNestedManyWithoutTestInput
 }
 
 export type TestUncheckedCreateInput = {
@@ -255,12 +259,14 @@ export type TestUncheckedCreateInput = {
   descripcion?: string | null
   tiempoMax?: number | null
   items?: Prisma.ItemUncheckedCreateNestedManyWithoutTestInput
+  evaluaciones?: Prisma.EvaluacionUncheckedCreateNestedManyWithoutTestInput
 }
 
 export type TestUpdateInput = {
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiempoMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   items?: Prisma.ItemUpdateManyWithoutTestNestedInput
+  evaluaciones?: Prisma.EvaluacionUpdateManyWithoutTestNestedInput
 }
 
 export type TestUncheckedUpdateInput = {
@@ -268,6 +274,7 @@ export type TestUncheckedUpdateInput = {
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiempoMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   items?: Prisma.ItemUncheckedUpdateManyWithoutTestNestedInput
+  evaluaciones?: Prisma.EvaluacionUncheckedUpdateManyWithoutTestNestedInput
 }
 
 export type TestCreateManyInput = {
@@ -342,15 +349,31 @@ export type TestUpdateOneRequiredWithoutItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TestUpdateToOneWithWhereWithoutItemsInput, Prisma.TestUpdateWithoutItemsInput>, Prisma.TestUncheckedUpdateWithoutItemsInput>
 }
 
+export type TestCreateNestedOneWithoutEvaluacionesInput = {
+  create?: Prisma.XOR<Prisma.TestCreateWithoutEvaluacionesInput, Prisma.TestUncheckedCreateWithoutEvaluacionesInput>
+  connectOrCreate?: Prisma.TestCreateOrConnectWithoutEvaluacionesInput
+  connect?: Prisma.TestWhereUniqueInput
+}
+
+export type TestUpdateOneRequiredWithoutEvaluacionesNestedInput = {
+  create?: Prisma.XOR<Prisma.TestCreateWithoutEvaluacionesInput, Prisma.TestUncheckedCreateWithoutEvaluacionesInput>
+  connectOrCreate?: Prisma.TestCreateOrConnectWithoutEvaluacionesInput
+  upsert?: Prisma.TestUpsertWithoutEvaluacionesInput
+  connect?: Prisma.TestWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TestUpdateToOneWithWhereWithoutEvaluacionesInput, Prisma.TestUpdateWithoutEvaluacionesInput>, Prisma.TestUncheckedUpdateWithoutEvaluacionesInput>
+}
+
 export type TestCreateWithoutItemsInput = {
   descripcion?: string | null
   tiempoMax?: number | null
+  evaluaciones?: Prisma.EvaluacionCreateNestedManyWithoutTestInput
 }
 
 export type TestUncheckedCreateWithoutItemsInput = {
   codTest?: number
   descripcion?: string | null
   tiempoMax?: number | null
+  evaluaciones?: Prisma.EvaluacionUncheckedCreateNestedManyWithoutTestInput
 }
 
 export type TestCreateOrConnectWithoutItemsInput = {
@@ -372,12 +395,56 @@ export type TestUpdateToOneWithWhereWithoutItemsInput = {
 export type TestUpdateWithoutItemsInput = {
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiempoMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  evaluaciones?: Prisma.EvaluacionUpdateManyWithoutTestNestedInput
 }
 
 export type TestUncheckedUpdateWithoutItemsInput = {
   codTest?: Prisma.IntFieldUpdateOperationsInput | number
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiempoMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  evaluaciones?: Prisma.EvaluacionUncheckedUpdateManyWithoutTestNestedInput
+}
+
+export type TestCreateWithoutEvaluacionesInput = {
+  descripcion?: string | null
+  tiempoMax?: number | null
+  items?: Prisma.ItemCreateNestedManyWithoutTestInput
+}
+
+export type TestUncheckedCreateWithoutEvaluacionesInput = {
+  codTest?: number
+  descripcion?: string | null
+  tiempoMax?: number | null
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutTestInput
+}
+
+export type TestCreateOrConnectWithoutEvaluacionesInput = {
+  where: Prisma.TestWhereUniqueInput
+  create: Prisma.XOR<Prisma.TestCreateWithoutEvaluacionesInput, Prisma.TestUncheckedCreateWithoutEvaluacionesInput>
+}
+
+export type TestUpsertWithoutEvaluacionesInput = {
+  update: Prisma.XOR<Prisma.TestUpdateWithoutEvaluacionesInput, Prisma.TestUncheckedUpdateWithoutEvaluacionesInput>
+  create: Prisma.XOR<Prisma.TestCreateWithoutEvaluacionesInput, Prisma.TestUncheckedCreateWithoutEvaluacionesInput>
+  where?: Prisma.TestWhereInput
+}
+
+export type TestUpdateToOneWithWhereWithoutEvaluacionesInput = {
+  where?: Prisma.TestWhereInput
+  data: Prisma.XOR<Prisma.TestUpdateWithoutEvaluacionesInput, Prisma.TestUncheckedUpdateWithoutEvaluacionesInput>
+}
+
+export type TestUpdateWithoutEvaluacionesInput = {
+  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  items?: Prisma.ItemUpdateManyWithoutTestNestedInput
+}
+
+export type TestUncheckedUpdateWithoutEvaluacionesInput = {
+  codTest?: Prisma.IntFieldUpdateOperationsInput | number
+  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  items?: Prisma.ItemUncheckedUpdateManyWithoutTestNestedInput
 }
 
 
@@ -387,10 +454,12 @@ export type TestUncheckedUpdateWithoutItemsInput = {
 
 export type TestCountOutputType = {
   items: number
+  evaluaciones: number
 }
 
 export type TestCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | TestCountOutputTypeCountItemsArgs
+  evaluaciones?: boolean | TestCountOutputTypeCountEvaluacionesArgs
 }
 
 /**
@@ -410,12 +479,20 @@ export type TestCountOutputTypeCountItemsArgs<ExtArgs extends runtime.Types.Exte
   where?: Prisma.ItemWhereInput
 }
 
+/**
+ * TestCountOutputType without action
+ */
+export type TestCountOutputTypeCountEvaluacionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EvaluacionWhereInput
+}
+
 
 export type TestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   codTest?: boolean
   descripcion?: boolean
   tiempoMax?: boolean
   items?: boolean | Prisma.Test$itemsArgs<ExtArgs>
+  evaluaciones?: boolean | Prisma.Test$evaluacionesArgs<ExtArgs>
   _count?: boolean | Prisma.TestCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["test"]>
 
@@ -440,6 +517,7 @@ export type TestSelectScalar = {
 export type TestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"codTest" | "descripcion" | "tiempoMax", ExtArgs["result"]["test"]>
 export type TestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | Prisma.Test$itemsArgs<ExtArgs>
+  evaluaciones?: boolean | Prisma.Test$evaluacionesArgs<ExtArgs>
   _count?: boolean | Prisma.TestCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -449,6 +527,7 @@ export type $TestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "Test"
   objects: {
     items: Prisma.$ItemPayload<ExtArgs>[]
+    evaluaciones: Prisma.$EvaluacionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     codTest: number
@@ -849,6 +928,7 @@ readonly fields: TestFieldRefs;
 export interface Prisma__TestClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   items<T extends Prisma.Test$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Test$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  evaluaciones<T extends Prisma.Test$evaluacionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Test$evaluacionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EvaluacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1290,6 +1370,30 @@ export type Test$itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   take?: number
   skip?: number
   distinct?: Prisma.ItemScalarFieldEnum | Prisma.ItemScalarFieldEnum[]
+}
+
+/**
+ * Test.evaluaciones
+ */
+export type Test$evaluacionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Evaluacion
+   */
+  select?: Prisma.EvaluacionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Evaluacion
+   */
+  omit?: Prisma.EvaluacionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EvaluacionInclude<ExtArgs> | null
+  where?: Prisma.EvaluacionWhereInput
+  orderBy?: Prisma.EvaluacionOrderByWithRelationInput | Prisma.EvaluacionOrderByWithRelationInput[]
+  cursor?: Prisma.EvaluacionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EvaluacionScalarFieldEnum | Prisma.EvaluacionScalarFieldEnum[]
 }
 
 /**
