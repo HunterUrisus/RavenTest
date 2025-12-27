@@ -111,7 +111,7 @@ async function seedItems() {
         });
     }
 
-    for (let i = 0; i < 5; i++) { 
+    for (let i = 0; i < 30; i++) { 
         const itemData = respuestasRaven[i];
         await prisma.item.create({
             data: {
