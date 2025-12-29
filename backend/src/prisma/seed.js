@@ -89,7 +89,7 @@ async function seedItems() {
   { serie: 'E', numero: 4, correcta: 2, cantOpciones: 8 },
   { serie: 'E', numero: 5, correcta: 1, cantOpciones: 8 },
   { serie: 'E', numero: 6, correcta: 5, cantOpciones: 8 },
-  { serie: 'E', numero: 7, correcta: 1, cantOpciones: 8 },
+  { serie: 'E', numero: 7, correcta: 2, cantOpciones: 8 },
   { serie: 'E', numero: 8, correcta: 4, cantOpciones: 8 },
   { serie: 'E', numero: 9, correcta: 1, cantOpciones: 8 },
   { serie: 'E', numero: 10, correcta: 6, cantOpciones: 8 },
@@ -111,7 +111,7 @@ async function seedItems() {
         });
     }
 
-    for (let i = 0; i < 30; i++) { 
+    for (let i = 0; i < 5; i++) { 
         const itemData = respuestasRaven[i];
         await prisma.item.create({
             data: {

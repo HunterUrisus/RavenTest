@@ -51,7 +51,7 @@ const Test = ({ user, testSelected = 3, onFinish }) => {
       tiempo: duracionMs,
     };
 
-    const nuevasRespuestas = [...respuestas, nuevaRespuesta]
+    const nuevasRespuestas = [...respuestas, nuevaRespuesta];
     setRespuestas(nuevasRespuestas);
 
     if (currentIndex < items.length - 1) {
@@ -69,14 +69,19 @@ const Test = ({ user, testSelected = 3, onFinish }) => {
       rut: user?.rut,
       codTest: testSelected,
       respuestas: nuevasRespuestas,
+      puntaje: nuevasRespuestas.filter((r) => {
+        return (
+          r.selectedOption ===
+          items.find((i) => i.idItem === r.idItem).resCorrecta
+        );
+      }).length,
     };
 
     const result = await sendEvaluacion(evaluacionData);
     if (onFinish && result != null) {
-      onFinish(result);
+      onFinish(result, nuevasRespuestas.length);
       setLoading(false);
     }
-
   };
 
   const currentQuestion = items[currentIndex];

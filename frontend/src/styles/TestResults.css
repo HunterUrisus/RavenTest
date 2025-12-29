@@ -1,0 +1,105 @@
+.result-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  width: 100%;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.result-card {
+  background-color: #ffffff;
+  padding: 3rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid #333;
+  margin: 2rem 0;
+}
+
+.icon-check {
+  background-color: #646cff;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 0 15px rgba(100, 108, 255, 0.4);
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+}
+
+.subtitle {
+  color: #a1a1a1;
+  margin-bottom: 2rem;
+}
+
+/* Círculo del puntaje */
+.score-container {
+  margin: 2rem 0;
+}
+
+.score-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 8px solid #646cff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1rem;
+  background-color: #ffffff;
+}
+
+.score-number {
+  font-size: 3.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.score-total {
+  font-size: 1rem;
+  color: #888;
+}
+
+/* Caja de detalles */
+.details-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.actions button {
+  width: 100%;
+  padding: 0.8em 1.2em;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
