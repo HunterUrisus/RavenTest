@@ -91,7 +91,7 @@ const Test = ({ user, testSelected = 3, onFinish }) => {
           <p>Cargando pregunta...</p>
         ) : (
           <Item
-            questionNumber={currentQuestion.numero}
+            questionNumber={currentIndex + 1}
             serie={currentQuestion.serie}
             num={currentQuestion.numero}
             cantOpciones={currentQuestion.cantOpciones}

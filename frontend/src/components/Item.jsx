@@ -15,7 +15,7 @@ const Item = ({ questionNumber, serie, num, cantOpciones, onAnswer }) => {
         <div className="question-box">
           <img src={`${base_path}/matriz.jpg`}></img>
         </div>
-        <div className="answers-box">
+        <div className={`answers-box ${cantOpciones === 8 ? 'answers-8' : ''}`}>
           {Array.from({ length: cantOpciones }, (_, index) => (
             <div key={index}>
               <button onClick={() => onAnswer(index)}>
