@@ -1,11 +1,14 @@
 "use strict";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import './styles/index.css'
+import "./styles/index.css";
 import Root from "./pages/Root.jsx";
 import Test from "./pages/Test.jsx";
 import Error404 from "./pages/Error404.jsx";
 import TestPage from "./pages/TestPage.jsx";
+import Results from "./pages/Results.jsx";
+import AnalisisEstudiante from "./pages/AnalisisEstudiante.jsx";
+import DetalleTest from "./pages/DetalleTest.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +22,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/raven",
-        element: <Test />
-      }
+        element: <Test />,
+      },
+      {
+        path: "/results",
+        element: <Results />,
+      },
+      {
+        path: "/results/student/:rut",
+        element: <AnalisisEstudiante />,
+      },
+      {
+        path: "/results/student/:rut/test/:testId",
+        element: <DetalleTest />,
+      },
     ],
   },
 ]);

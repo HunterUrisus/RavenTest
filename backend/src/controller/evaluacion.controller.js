@@ -68,3 +68,16 @@ export const getEvaluacionById = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const getAllEvaluaciones = async (req, res) => {
+  try {
+    const evaluaciones = await prisma.evaluacion.findMany();
+    if (!evaluaciones) {
+      res.status(400).json({ message: "No se pudieron encontrar las evaluaciones." });
+    }
+    res.status(200).json(evaluaciones);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
