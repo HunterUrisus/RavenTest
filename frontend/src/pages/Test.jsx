@@ -36,7 +36,7 @@ const Test = ({ user, testSelected = 3, onFinish }) => {
     );
   }
 
-  const handleAnswer = (selectedOption) => {
+  const handleAnswer = (selectedOptionIndex) => {
     // eslint-disable-next-line react-hooks/purity
     const endTime = Date.now();
     const duracionMs = endTime - startTime.current;
@@ -44,10 +44,12 @@ const Test = ({ user, testSelected = 3, onFinish }) => {
 
     const itemActual = items[currentIndex];
 
+    const respuestaNormalizada = Number(selectedOptionIndex) + 1;
+
     const nuevaRespuesta = {
       rutEstudiante: user?.rut,
       idItem: itemActual.idItem,
-      selectedOption,
+      selectedOption: respuestaNormalizada,
       tiempo: duracionMs,
     };
 
@@ -70,10 +72,8 @@ const Test = ({ user, testSelected = 3, onFinish }) => {
       codTest: testSelected,
       respuestas: nuevasRespuestas,
       puntaje: nuevasRespuestas.filter((r) => {
-        return (
-          r.selectedOption ===
-          items.find((i) => i.idItem === r.idItem).resCorrecta
-        );
+        const item = items.find((i) => i.idItem === r.idItem);
+        return Number(r.selectedOption) === Number(item.resCorrecta);
       }).length,
     };
 

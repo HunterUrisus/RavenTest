@@ -16,7 +16,7 @@ export const enviarEvaluacion = async (req, res) => {
       const itemReal = itemsDb.find((i) => i.idItem === respUser.idItem);
 
       const esCorrecta =
-        itemReal && itemReal.resCorrecta === respUser.selectedOption + 1;
+        itemReal && Number(itemReal.resCorrecta) === Number(respUser.selectedOption);
 
       if (esCorrecta) puntaje++;
 
