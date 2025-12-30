@@ -9,17 +9,17 @@ export const enviarEvaluacion = async (req, res) => {
       where: { codTest: Number(codTest) },
       select: { idItem: true, resCorrecta: true },
     });
-    
+
     let puntaje = 0;
-    
+
     const respuestasParaGuardar = respuestas.map((respUser) => {
       const itemReal = itemsDb.find((i) => i.idItem === respUser.idItem);
-      
+
       const esCorrecta =
-      itemReal && itemReal.resCorrecta === respUser.selectedOption + 1;
-      
+        itemReal && itemReal.resCorrecta === respUser.selectedOption + 1;
+
       if (esCorrecta) puntaje++;
-      
+
       return {
         idItem: respUser.idItem,
         respuesta: respUser.selectedOption,
@@ -27,7 +27,6 @@ export const enviarEvaluacion = async (req, res) => {
         esCorrecta: esCorrecta,
       };
     });
-    
 
     const nuevaEvaluacion = await prisma.evaluacion.create({
       data: {
@@ -57,7 +56,9 @@ export const enviarEvaluacion = async (req, res) => {
 export const getEvaluacionById = async (req, res) => {
   try {
     const { id } = req.params;
-    const evaluacion = await prisma.evaluacion.findMany({ where: { id: parseInt(id) } });
+    const evaluacion = await prisma.evaluacion.findMany({
+      where: { id: parseInt(id) },
+    });
     if (!evaluacion) {
       res.status(400).json({ message: "No se pudo encontrar la evaluación." });
     }
@@ -71,9 +72,19 @@ export const getEvaluacionById = async (req, res) => {
 
 export const getAllEvaluaciones = async (req, res) => {
   try {
-    const evaluaciones = await prisma.evaluacion.findMany();
+    const evaluaciones = await prisma.evaluacion.findMany({
+      include: {
+        respuestas: {
+          include: {
+            item: true,
+          },
+        },
+      },
+    });
     if (!evaluaciones) {
-      res.status(400).json({ message: "No se pudieron encontrar las evaluaciones." });
+      res
+        .status(400)
+        .json({ message: "No se pudieron encontrar las evaluaciones." });
     }
     res.status(200).json(evaluaciones);
   } catch (error) {

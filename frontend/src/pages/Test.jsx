@@ -9,12 +9,11 @@ const Test = ({ user, testSelected = 3, onFinish }) => {
   const [loading, setLoading] = useState(true);
   const { items, fetchItems } = getItemsByTestId();
 
-  const startTime = useRef(Date.now());
+  const startTime = useRef(null);
 
-  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     fetchItems(testSelected);
-  }, []);
+  }, [fetchItems, testSelected]);
 
   useEffect(() => {
     if (items.length > 0) {
@@ -38,6 +37,7 @@ const Test = ({ user, testSelected = 3, onFinish }) => {
   }
 
   const handleAnswer = (selectedOption) => {
+    // eslint-disable-next-line react-hooks/purity
     const endTime = Date.now();
     const duracionMs = endTime - startTime.current;
     setLoading(true);

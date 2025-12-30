@@ -24,41 +24,43 @@ const Results = () => {
     };
 
     cargarDatos();
-  }, []);
+  }, [fetchEstudiantes, fetchEvaluaciones]);
 
   const statsGeneral = {
     totalEstudiantes: estudiantes ? estudiantes.length : 0,
     promedioGeneral: 0,
     mejorPuntaje: 58,
     peorPuntaje: 12,
-    testsCompletados: 1, // Asumiendo Pre y Post
+    testsCompletados: evaluaciones ? evaluaciones.length : 0, // Asumiendo Pre y Post
   };
 
   const statsEstudiantes =
     estudiantes && evaluaciones
-      ? estudiantes.map((est) => {
-          const test1Val = evaluaciones.find(
-            (ev) => ev.rutEstudiante === est.rut && ev.codTest === 1
-          )?.puntaje;
-          const test2Val = evaluaciones.find(
-            (ev) => ev.rutEstudiante === est.rut && ev.codTest === 2
-          )?.puntaje;
+      ? estudiantes
+          .filter((est) => est && est.rut)
+          .map((est) => {
+            const test1Val = evaluaciones.find(
+              (ev) => ev.rutEstudiante === est.rut && ev.codTest === 1
+            )?.puntaje;
+            const test2Val = evaluaciones.find(
+              (ev) => ev.rutEstudiante === est.rut && ev.codTest === 2
+            )?.puntaje;
 
-          return {
-            id: estudiantes.indexOf(est),
-            rut: est.rut,
-            nombre: est.nombre,
-            test1: test1Val ?? "-",
-            test2: test2Val ?? "-",
-            mejora: (() => {
-              if (test1Val != null && test2Val != null) {
-                const diff = test2Val - test1Val;
-                return (diff >= 0 ? "+" : "") + diff;
-              }
-              return "---";
-            })(),
-          };
-        })
+            return {
+              id: estudiantes.indexOf(est),
+              rut: est.rut,
+              nombre: est.nombre,
+              test1: test1Val ?? "-",
+              test2: test2Val ?? "-",
+              mejora: (() => {
+                if (test1Val != null && test2Val != null) {
+                  const diff = test2Val - test1Val;
+                  return (diff >= 0 ? "+" : "") + diff;
+                }
+                return "---";
+              })(),
+            };
+          })
       : [];
 
   console.log("Stats: ", statsEstudiantes);
@@ -145,7 +147,8 @@ const Results = () => {
                   <button className="btn-export">Exportar CSV</button>
                 </div>
                 <div className="table-wrapper">
-                  <table className="data-table hover-table"> {/* Clase extra para hover */}
+                  <table className="data-table hover-table">
+                    {/* Clase extra para hover */}
                     <thead>
                       <tr>
                         <th>RUT</th>
@@ -159,31 +162,47 @@ const Results = () => {
                       {statsEstudiantes.map((st) => (
                         <tr key={st.id}>
                           <td className="mono">{st.rut}</td>
-                          
+
                           {/* 1. CLICK EN NOMBRE -> ANÁLISIS DEL ESTUDIANTE */}
-                          <td 
+                          <td
                             className="clickable-cell name-cell"
-                            onClick={() => navigate(`/results/student/${st.rut}`)}
+                            onClick={() =>
+                              navigate(`/results/student/${st.rut}`)
+                            }
                           >
                             {st.nombre} ↗
                           </td>
 
                           {/* 2. CLICK EN RESULTADOS -> DETALLE DE RESPUESTAS */}
-                          <td 
-                            className={`clickable-cell ${st.test1 !== "-" ? "score-link" : ""}`}
-                            onClick={() => st.test1 !== "-" && navigate(`/results/student/${st.rut}/test/1`)}
+                          <td
+                            className={`clickable-cell ${
+                              st.test1 !== "-" ? "score-link" : ""
+                            }`}
+                            onClick={() =>
+                              st.test1 !== "-" &&
+                              navigate(`/results/student/${st.rut}/test/1`)
+                            }
                           >
                             {st.test1}
                           </td>
-                          
-                          <td 
-                            className={`clickable-cell ${st.test2 !== "-" ? "score-link" : ""}`}
-                            onClick={() => st.test2 !== "-" && navigate(`/results/student/${st.rut}/test/2`)}
+
+                          <td
+                            className={`clickable-cell ${
+                              st.test2 !== "-" ? "score-link" : ""
+                            }`}
+                            onClick={() =>
+                              st.test2 !== "-" &&
+                              navigate(`/results/student/${st.rut}/test/2`)
+                            }
                           >
                             {st.test2}
                           </td>
 
-                          <td className={st.mejora.includes("-") ? "negative" : "positive"}>
+                          <td
+                            className={
+                              st.mejora.includes("-") ? "negative" : "positive"
+                            }
+                          >
                             {st.mejora}
                           </td>
                         </tr>
