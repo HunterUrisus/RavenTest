@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # --- Base de Datos ---
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: dvaldebenito       # Coincide con tu user en .env
+      POSTGRES_PASSWORD: Daniel2507!    # Coincide con tu pass en .env
+      POSTGRES_DB: RavenTest            # Coincide con tu DB en .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # --- Backend (Node.js) ---
+  backend:
+    build: ./backend
+    container_name: node_backend
+    ports:
+      - "3001:3001"  # <--- CAMBIO IMPORTANTE: Exponemos el 3001
+    environment:
+      - PORT=3001
+      - DATABASE_URL=postgresql://dvaldebenito:Daniel2507!@db:5432/RavenTest?schema=public
+      - FRONTEND_URL=http://localhost:3000
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  # --- Frontend (React) ---
+  frontend:
+    build: ./frontend
+    container_name: react_frontend
+    ports:
+      - "3000:3000" # React se queda en el 3000 (o 5173 si usas Vite)
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      # Importante: Dile a React dónde está el backend ahora
+      - REACT_APP_API_URL=http://localhost:3001 
+      # (Si usas Vite sería: VITE_API_URL=http://localhost:3001)
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:

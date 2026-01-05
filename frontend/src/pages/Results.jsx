@@ -144,7 +144,7 @@ const Results = () => {
               <div className="tab-content fade-in">
                 <div className="table-header">
                   <h2>Comparativa Pre vs Post Test</h2>
-                  <button className="btn-export">Exportar CSV</button>
+                  {/*<button className="btn-export">Exportar CSV</button >*/}
                 </div>
                 <div className="table-wrapper">
                   <table className="data-table hover-table">

@@ -16,7 +16,7 @@ app.use(cors({ origin: allowedOrigin, credentials: true }));
 
 app.use("/api", indexRoutes);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 
 await startSeed()
   .then(async () => {
