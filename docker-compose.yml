@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   # --- Base de Datos ---
@@ -14,6 +13,11 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dvaldebenito -d RavenTest"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   # --- Backend (Node.js) ---
   backend:
@@ -23,10 +27,9 @@ services:
       - "3001:3001"  # <--- CAMBIO IMPORTANTE: Exponemos el 3001
     environment:
       - PORT=3001
-      - DATABASE_URL=postgresql://dvaldebenito:Daniel2507!@db:5432/RavenTest?schema=public
-      - FRONTEND_URL=http://localhost:3000
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - ./backend:/app
       - /app/node_modules
@@ -36,17 +39,23 @@ services:
     build: ./frontend
     container_name: react_frontend
     ports:
-      - "3000:3000" # React se queda en el 3000 (o 5173 si usas Vite)
+      - "5173:5173" # 5173 si usas Vite
     environment:
       - CHOKIDAR_USEPOLLING=true
-      # Importante: Dile a React dónde está el backend ahora
-      - REACT_APP_API_URL=http://localhost:3001 
-      # (Si usas Vite sería: VITE_API_URL=http://localhost:3001)
+      - VITE_API_URL=http://localhost:3001
     depends_on:
       - backend
     volumes:
       - ./frontend:/app
       - /app/node_modules
-
+  
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare_tunnel
+    restart: always
+    # Apuntamos al nombre del servicio 'frontend' y su puerto interno
+    command: tunnel --url http://frontend:5173
+    depends_on:
+      - frontend
 volumes:
   postgres_data:

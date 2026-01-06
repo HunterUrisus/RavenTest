@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:22-alpine
 
 WORKDIR /app
 
@@ -11,4 +11,4 @@ COPY . .
 EXPOSE 3000
 
 # Comando para iniciar React (ajusta si usas Vite o CRA)
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
