@@ -2,11 +2,11 @@ import "../styles/Form.css";
 import { useState } from "react";
 
 const Form = ({ onSuccess }) => {
-  const [rut, setRut] = useState();
-  const [nombre, setNombre] = useState();
-  const [fechaNacimiento, setFechaNacimiento] = useState();
-  const [anoIngreso, setAnoIngreso] = useState();
-  const [expVideojuegos, setExpVideojuegos] = useState();
+  const [rut, setRut] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [fechaNacimiento, setFechaNacimiento] = useState("");
+  const [anoIngreso, setAnoIngreso] = useState("");
+  const [expVideojuegos, setExpVideojuegos] = useState("");
   const [testSelected, setTestSelected] = useState("1");
 
   const formatRut = (rut) => {
@@ -151,14 +151,6 @@ const Form = ({ onSuccess }) => {
                 onChange={(e) => setTestSelected(e.target.value)}
               />
               <label htmlFor="2">Test 2</label>
-              <input
-                type="radio"
-                id="3"
-                name="testPrevio"
-                value="3"
-                onChange={(e) => setTestSelected(e.target.value)}
-              />
-              <label htmlFor="3">Test 3 (Testing)</label>
             </div>
           </div>
 
