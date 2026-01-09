@@ -24,9 +24,11 @@ services:
     build: ./backend
     container_name: node_backend
     ports:
-      - "3001:3001"  # <--- CAMBIO IMPORTANTE: Exponemos el 3001
+      - "${PORT}:${PORT}" # Mapea 3001:3001
     environment:
-      - PORT=3001
+      - PORT=${PORT}
+      - DATABASE_URL=${DATABASE_URL}
+      - FRONTEND_URL=${FRONTEND_URL}
     depends_on:
       db:
         condition: service_healthy
@@ -36,13 +38,13 @@ services:
 
   # --- Frontend (React) ---
   frontend:
-    build: ./frontend
+    build: ./frontend # Usará tu fDockerfile (asegúrate de que EXPOSE sea 5173)
     container_name: react_frontend
     ports:
-      - "5173:5173" # 5173 si usas Vite
+      - "5173:5173"
     environment:
+      - VITE_API_TARGET=${VITE_API_TARGET} # Pasa la variable al contenedor para vite.config.js
       - CHOKIDAR_USEPOLLING=true
-      - VITE_API_URL=http://localhost:3001
     depends_on:
       - backend
     volumes:

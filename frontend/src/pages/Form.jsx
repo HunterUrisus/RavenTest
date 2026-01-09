@@ -1,3 +1,4 @@
+import { createEstudiante } from "../services/estudiantes.service";
 import "../styles/Form.css";
 import { useState } from "react";
 
@@ -8,6 +9,7 @@ const Form = ({ onSuccess }) => {
   const [anoIngreso, setAnoIngreso] = useState("");
   const [expVideojuegos, setExpVideojuegos] = useState("");
   const [testSelected, setTestSelected] = useState("1");
+  const [loading, setLoading] = useState(false);
 
   const formatRut = (rut) => {
     let actual = rut.replace(/^0+|[^0-9kK]+/g, "").toUpperCase();
@@ -27,6 +29,7 @@ const Form = ({ onSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const normalizedRut = rut.replace(/[.-]/g, "").toUpperCase();
 
@@ -39,19 +42,11 @@ const Form = ({ onSuccess }) => {
     };
 
     try {
-      const res = await fetch("/api/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-
-      if (!res.ok) {
-        const err = await res.json();
-        alert(err.message || "Error al crear usuario");
+      const data = await createEstudiante(body);
+      if (!data) {
+        alert("Error al crear el usuario");
         return;
       }
-
-      const data = await res.json();
 
       //Avisa al componente padre que todo salió bien
       if (onSuccess) {
@@ -70,6 +65,8 @@ const Form = ({ onSuccess }) => {
     } catch (error) {
       console.error(error);
       alert("Error de red al crear usuario");
+    }finally {
+      setLoading(false);
     }
   };
 

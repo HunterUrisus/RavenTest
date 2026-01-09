@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 5173
 
 # Comando para iniciar React (ajusta si usas Vite o CRA)
 CMD ["npm", "run", "dev"]

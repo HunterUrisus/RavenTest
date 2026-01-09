@@ -28,10 +28,12 @@ export type AggregateEstudiante = {
 
 export type EstudianteAvgAggregateOutputType = {
   anoIngreso: number | null
+  grupo: number | null
 }
 
 export type EstudianteSumAggregateOutputType = {
   anoIngreso: number | null
+  grupo: number | null
 }
 
 export type EstudianteMinAggregateOutputType = {
@@ -40,6 +42,7 @@ export type EstudianteMinAggregateOutputType = {
   fechaNacimiento: Date | null
   anoIngreso: number | null
   expVideojuegos: string | null
+  grupo: number | null
 }
 
 export type EstudianteMaxAggregateOutputType = {
@@ -48,6 +51,7 @@ export type EstudianteMaxAggregateOutputType = {
   fechaNacimiento: Date | null
   anoIngreso: number | null
   expVideojuegos: string | null
+  grupo: number | null
 }
 
 export type EstudianteCountAggregateOutputType = {
@@ -56,16 +60,19 @@ export type EstudianteCountAggregateOutputType = {
   fechaNacimiento: number
   anoIngreso: number
   expVideojuegos: number
+  grupo: number
   _all: number
 }
 
 
 export type EstudianteAvgAggregateInputType = {
   anoIngreso?: true
+  grupo?: true
 }
 
 export type EstudianteSumAggregateInputType = {
   anoIngreso?: true
+  grupo?: true
 }
 
 export type EstudianteMinAggregateInputType = {
@@ -74,6 +81,7 @@ export type EstudianteMinAggregateInputType = {
   fechaNacimiento?: true
   anoIngreso?: true
   expVideojuegos?: true
+  grupo?: true
 }
 
 export type EstudianteMaxAggregateInputType = {
@@ -82,6 +90,7 @@ export type EstudianteMaxAggregateInputType = {
   fechaNacimiento?: true
   anoIngreso?: true
   expVideojuegos?: true
+  grupo?: true
 }
 
 export type EstudianteCountAggregateInputType = {
@@ -90,6 +99,7 @@ export type EstudianteCountAggregateInputType = {
   fechaNacimiento?: true
   anoIngreso?: true
   expVideojuegos?: true
+  grupo?: true
   _all?: true
 }
 
@@ -185,6 +195,7 @@ export type EstudianteGroupByOutputType = {
   fechaNacimiento: Date
   anoIngreso: number
   expVideojuegos: string | null
+  grupo: number | null
   _count: EstudianteCountAggregateOutputType | null
   _avg: EstudianteAvgAggregateOutputType | null
   _sum: EstudianteSumAggregateOutputType | null
@@ -216,6 +227,7 @@ export type EstudianteWhereInput = {
   fechaNacimiento?: Prisma.DateTimeFilter<"Estudiante"> | Date | string
   anoIngreso?: Prisma.IntFilter<"Estudiante"> | number
   expVideojuegos?: Prisma.StringNullableFilter<"Estudiante"> | string | null
+  grupo?: Prisma.IntNullableFilter<"Estudiante"> | number | null
   respuestas?: Prisma.RespuestaItemListRelationFilter
   evaluaciones?: Prisma.EvaluacionListRelationFilter
 }
@@ -226,6 +238,7 @@ export type EstudianteOrderByWithRelationInput = {
   fechaNacimiento?: Prisma.SortOrder
   anoIngreso?: Prisma.SortOrder
   expVideojuegos?: Prisma.SortOrderInput | Prisma.SortOrder
+  grupo?: Prisma.SortOrderInput | Prisma.SortOrder
   respuestas?: Prisma.RespuestaItemOrderByRelationAggregateInput
   evaluaciones?: Prisma.EvaluacionOrderByRelationAggregateInput
 }
@@ -239,6 +252,7 @@ export type EstudianteWhereUniqueInput = Prisma.AtLeast<{
   fechaNacimiento?: Prisma.DateTimeFilter<"Estudiante"> | Date | string
   anoIngreso?: Prisma.IntFilter<"Estudiante"> | number
   expVideojuegos?: Prisma.StringNullableFilter<"Estudiante"> | string | null
+  grupo?: Prisma.IntNullableFilter<"Estudiante"> | number | null
   respuestas?: Prisma.RespuestaItemListRelationFilter
   evaluaciones?: Prisma.EvaluacionListRelationFilter
 }, "rut">
@@ -249,6 +263,7 @@ export type EstudianteOrderByWithAggregationInput = {
   fechaNacimiento?: Prisma.SortOrder
   anoIngreso?: Prisma.SortOrder
   expVideojuegos?: Prisma.SortOrderInput | Prisma.SortOrder
+  grupo?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EstudianteCountOrderByAggregateInput
   _avg?: Prisma.EstudianteAvgOrderByAggregateInput
   _max?: Prisma.EstudianteMaxOrderByAggregateInput
@@ -265,6 +280,7 @@ export type EstudianteScalarWhereWithAggregatesInput = {
   fechaNacimiento?: Prisma.DateTimeWithAggregatesFilter<"Estudiante"> | Date | string
   anoIngreso?: Prisma.IntWithAggregatesFilter<"Estudiante"> | number
   expVideojuegos?: Prisma.StringNullableWithAggregatesFilter<"Estudiante"> | string | null
+  grupo?: Prisma.IntNullableWithAggregatesFilter<"Estudiante"> | number | null
 }
 
 export type EstudianteCreateInput = {
@@ -273,6 +289,7 @@ export type EstudianteCreateInput = {
   fechaNacimiento: Date | string
   anoIngreso: number
   expVideojuegos?: string | null
+  grupo?: number | null
   respuestas?: Prisma.RespuestaItemCreateNestedManyWithoutEstudianteInput
   evaluaciones?: Prisma.EvaluacionCreateNestedManyWithoutEstudianteInput
 }
@@ -283,6 +300,7 @@ export type EstudianteUncheckedCreateInput = {
   fechaNacimiento: Date | string
   anoIngreso: number
   expVideojuegos?: string | null
+  grupo?: number | null
   respuestas?: Prisma.RespuestaItemUncheckedCreateNestedManyWithoutEstudianteInput
   evaluaciones?: Prisma.EvaluacionUncheckedCreateNestedManyWithoutEstudianteInput
 }
@@ -293,6 +311,7 @@ export type EstudianteUpdateInput = {
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
   expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   respuestas?: Prisma.RespuestaItemUpdateManyWithoutEstudianteNestedInput
   evaluaciones?: Prisma.EvaluacionUpdateManyWithoutEstudianteNestedInput
 }
@@ -303,6 +322,7 @@ export type EstudianteUncheckedUpdateInput = {
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
   expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   respuestas?: Prisma.RespuestaItemUncheckedUpdateManyWithoutEstudianteNestedInput
   evaluaciones?: Prisma.EvaluacionUncheckedUpdateManyWithoutEstudianteNestedInput
 }
@@ -313,6 +333,7 @@ export type EstudianteCreateManyInput = {
   fechaNacimiento: Date | string
   anoIngreso: number
   expVideojuegos?: string | null
+  grupo?: number | null
 }
 
 export type EstudianteUpdateManyMutationInput = {
@@ -321,6 +342,7 @@ export type EstudianteUpdateManyMutationInput = {
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
   expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type EstudianteUncheckedUpdateManyInput = {
@@ -329,6 +351,7 @@ export type EstudianteUncheckedUpdateManyInput = {
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
   expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type EstudianteCountOrderByAggregateInput = {
@@ -337,10 +360,12 @@ export type EstudianteCountOrderByAggregateInput = {
   fechaNacimiento?: Prisma.SortOrder
   anoIngreso?: Prisma.SortOrder
   expVideojuegos?: Prisma.SortOrder
+  grupo?: Prisma.SortOrder
 }
 
 export type EstudianteAvgOrderByAggregateInput = {
   anoIngreso?: Prisma.SortOrder
+  grupo?: Prisma.SortOrder
 }
 
 export type EstudianteMaxOrderByAggregateInput = {
@@ -349,6 +374,7 @@ export type EstudianteMaxOrderByAggregateInput = {
   fechaNacimiento?: Prisma.SortOrder
   anoIngreso?: Prisma.SortOrder
   expVideojuegos?: Prisma.SortOrder
+  grupo?: Prisma.SortOrder
 }
 
 export type EstudianteMinOrderByAggregateInput = {
@@ -357,10 +383,12 @@ export type EstudianteMinOrderByAggregateInput = {
   fechaNacimiento?: Prisma.SortOrder
   anoIngreso?: Prisma.SortOrder
   expVideojuegos?: Prisma.SortOrder
+  grupo?: Prisma.SortOrder
 }
 
 export type EstudianteSumOrderByAggregateInput = {
   anoIngreso?: Prisma.SortOrder
+  grupo?: Prisma.SortOrder
 }
 
 export type EstudianteNullableScalarRelationFilter = {
@@ -391,6 +419,14 @@ export type IntFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type EstudianteCreateNestedOneWithoutRespuestasInput = {
@@ -429,6 +465,7 @@ export type EstudianteCreateWithoutRespuestasInput = {
   fechaNacimiento: Date | string
   anoIngreso: number
   expVideojuegos?: string | null
+  grupo?: number | null
   evaluaciones?: Prisma.EvaluacionCreateNestedManyWithoutEstudianteInput
 }
 
@@ -438,6 +475,7 @@ export type EstudianteUncheckedCreateWithoutRespuestasInput = {
   fechaNacimiento: Date | string
   anoIngreso: number
   expVideojuegos?: string | null
+  grupo?: number | null
   evaluaciones?: Prisma.EvaluacionUncheckedCreateNestedManyWithoutEstudianteInput
 }
 
@@ -463,6 +501,7 @@ export type EstudianteUpdateWithoutRespuestasInput = {
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
   expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluaciones?: Prisma.EvaluacionUpdateManyWithoutEstudianteNestedInput
 }
 
@@ -472,6 +511,7 @@ export type EstudianteUncheckedUpdateWithoutRespuestasInput = {
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
   expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluaciones?: Prisma.EvaluacionUncheckedUpdateManyWithoutEstudianteNestedInput
 }
 
@@ -481,6 +521,7 @@ export type EstudianteCreateWithoutEvaluacionesInput = {
   fechaNacimiento: Date | string
   anoIngreso: number
   expVideojuegos?: string | null
+  grupo?: number | null
   respuestas?: Prisma.RespuestaItemCreateNestedManyWithoutEstudianteInput
 }
 
@@ -490,6 +531,7 @@ export type EstudianteUncheckedCreateWithoutEvaluacionesInput = {
   fechaNacimiento: Date | string
   anoIngreso: number
   expVideojuegos?: string | null
+  grupo?: number | null
   respuestas?: Prisma.RespuestaItemUncheckedCreateNestedManyWithoutEstudianteInput
 }
 
@@ -515,6 +557,7 @@ export type EstudianteUpdateWithoutEvaluacionesInput = {
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
   expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   respuestas?: Prisma.RespuestaItemUpdateManyWithoutEstudianteNestedInput
 }
 
@@ -524,6 +567,7 @@ export type EstudianteUncheckedUpdateWithoutEvaluacionesInput = {
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   anoIngreso?: Prisma.IntFieldUpdateOperationsInput | number
   expVideojuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   respuestas?: Prisma.RespuestaItemUncheckedUpdateManyWithoutEstudianteNestedInput
 }
 
@@ -573,6 +617,7 @@ export type EstudianteSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   fechaNacimiento?: boolean
   anoIngreso?: boolean
   expVideojuegos?: boolean
+  grupo?: boolean
   respuestas?: boolean | Prisma.Estudiante$respuestasArgs<ExtArgs>
   evaluaciones?: boolean | Prisma.Estudiante$evaluacionesArgs<ExtArgs>
   _count?: boolean | Prisma.EstudianteCountOutputTypeDefaultArgs<ExtArgs>
@@ -584,6 +629,7 @@ export type EstudianteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   fechaNacimiento?: boolean
   anoIngreso?: boolean
   expVideojuegos?: boolean
+  grupo?: boolean
 }, ExtArgs["result"]["estudiante"]>
 
 export type EstudianteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -592,6 +638,7 @@ export type EstudianteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   fechaNacimiento?: boolean
   anoIngreso?: boolean
   expVideojuegos?: boolean
+  grupo?: boolean
 }, ExtArgs["result"]["estudiante"]>
 
 export type EstudianteSelectScalar = {
@@ -600,9 +647,10 @@ export type EstudianteSelectScalar = {
   fechaNacimiento?: boolean
   anoIngreso?: boolean
   expVideojuegos?: boolean
+  grupo?: boolean
 }
 
-export type EstudianteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"rut" | "nombre" | "fechaNacimiento" | "anoIngreso" | "expVideojuegos", ExtArgs["result"]["estudiante"]>
+export type EstudianteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"rut" | "nombre" | "fechaNacimiento" | "anoIngreso" | "expVideojuegos" | "grupo", ExtArgs["result"]["estudiante"]>
 export type EstudianteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   respuestas?: boolean | Prisma.Estudiante$respuestasArgs<ExtArgs>
   evaluaciones?: boolean | Prisma.Estudiante$evaluacionesArgs<ExtArgs>
@@ -623,6 +671,7 @@ export type $EstudiantePayload<ExtArgs extends runtime.Types.Extensions.Internal
     fechaNacimiento: Date
     anoIngreso: number
     expVideojuegos: string | null
+    grupo: number | null
   }, ExtArgs["result"]["estudiante"]>
   composites: {}
 }
@@ -1053,6 +1102,7 @@ export interface EstudianteFieldRefs {
   readonly fechaNacimiento: Prisma.FieldRef<"Estudiante", 'DateTime'>
   readonly anoIngreso: Prisma.FieldRef<"Estudiante", 'Int'>
   readonly expVideojuegos: Prisma.FieldRef<"Estudiante", 'String'>
+  readonly grupo: Prisma.FieldRef<"Estudiante", 'Int'>
 }
     
 

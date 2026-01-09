@@ -149,3 +149,37 @@ export async function updateUser(req, res) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export async function asignGroupToUser(req, res) { 
+  try {
+    const { rut } = req.params;
+    const { grupo } = req.body;
+
+    if (!rut || !grupo) {
+      return res.status(400).json({
+        message: "Los parámetros 'rut' y 'grupo' son requeridos.",
+        data: null
+      });
+    }
+
+    
+    // Normalizar RUT: quitar puntos y guión, poner DV en mayúscula
+    const normalizedRut = rut.replace(/[.\-]/g, "").toUpperCase();
+    console.log("Rut normalizado:", normalizedRut);
+    const updatedUser = await prisma.estudiante.update({
+      where: { rut: normalizedRut },
+      data: {
+        grupo: parseInt(grupo, 10),
+        },
+        }); 
+        
+    res.status(200).json({
+      message: "Grupo asignado exitosamente!",
+      data: updatedUser 
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+
+}

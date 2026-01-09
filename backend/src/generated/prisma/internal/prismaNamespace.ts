@@ -822,7 +822,8 @@ export const EstudianteScalarFieldEnum = {
   nombre: 'nombre',
   fechaNacimiento: 'fechaNacimiento',
   anoIngreso: 'anoIngreso',
-  expVideojuegos: 'expVideojuegos'
+  expVideojuegos: 'expVideojuegos',
+  grupo: 'grupo'
 } as const
 
 export type EstudianteScalarFieldEnum = (typeof EstudianteScalarFieldEnum)[keyof typeof EstudianteScalarFieldEnum]

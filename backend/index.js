@@ -6,6 +6,7 @@ import cors from "cors";
 import { startSeed } from "./src/prisma/seed.js";
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(morgan("dev"));
@@ -15,8 +16,6 @@ const allowedOrigin = process.env.FRONTEND_URL || "http://localhost:5173";
 app.use(cors({ origin: allowedOrigin, credentials: true }));
 
 app.use("/api", indexRoutes);
-
-const PORT = process.env.PORT || 3001;
 
 await startSeed()
   .then(async () => {
@@ -28,5 +27,5 @@ await startSeed()
   });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}/api`);
+  console.log(`Server is running on port ${PORT}`);
 });
