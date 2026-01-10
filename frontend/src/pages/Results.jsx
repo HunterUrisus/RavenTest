@@ -38,47 +38,54 @@ const Results = () => {
       return;
     }
 
-    // 1. Encabezados para un formato "Tidy Data" (Ideal para tablas dinámicas)
+    // 1. Encabezados actualizados incluyendo la SERIE
     const headers = [
       "RUT",
       "Grupo",
       "Nombre",
       "Test_ID",
+      "Serie",        // <--- NUEVA COLUMNA
       "Nro_Pregunta",
       "Respuesta_Seleccionada",
       "Es_Correcta",
-      "Tiempo_Segundos",
+      "Tiempo_Segundos"
     ];
 
     const csvRows = [];
 
-    // 2. Iteramos por cada estudiante visible en la tabla
     filteredStudents.forEach((st) => {
-      // Buscamos TODAS las evaluaciones de este estudiante en la data cruda
-      const userEvals = evaluaciones.filter(
-        (ev) => ev.rutEstudiante === st.rut
-      );
+      // Buscamos TODAS las evaluaciones de este estudiante
+      const userEvals = evaluaciones.filter((ev) => ev.rutEstudiante === st.rut);
 
       userEvals.forEach((evaluacion) => {
-        // Por cada evaluación, recorremos sus respuestas (items)
         if (evaluacion.respuestas && evaluacion.respuestas.length > 0) {
-          evaluacion.respuestas.forEach((resp, index) => {
-            // Sanitizamos datos
+          
+          // Ordenamos las respuestas para que salgan ordenadas en el Excel (A1, A2... B1, B2...)
+          const respuestasOrdenadas = [...evaluacion.respuestas].sort((a, b) => {
+             // Lógica de ordenamiento simple por ID de item si están disponibles
+             return (a.item?.idItem || 0) - (b.item?.idItem || 0);
+          });
+
+          respuestasOrdenadas.forEach((resp, index) => {
             const nombreSanitizado = `"${st.nombre}"`;
             const grupoTexto = st.grupo === 1 ? "Experimental" : "Control";
-            const numeroPregunta = resp.item?.numero || index + 1; // Si tienes el número del item, úsalo
-            const tiempoSegundos = (resp.tiempo / 1000).toFixed(2); // Convertimos ms a segundos
+            
+            // --- AQUÍ ESTÁ EL CAMBIO CLAVE ---
+            // Extraemos la serie. Si por alguna razón no viene, ponemos un guion.
+            const serie = resp.item?.serie || "-"; 
+            const numeroPregunta = resp.item?.numero || index + 1;
+            const tiempoSegundos = (resp.tiempo / 1000).toFixed(2);
 
-            // Creamos la fila
             const row = [
               st.rut,
               grupoTexto,
               nombreSanitizado,
-              evaluacion.codTest, // 1 o 2
-              numeroPregunta, // Ej: 1, 2, 3...
-              resp.respuesta, // Ej: 4
+              evaluacion.codTest,
+              serie,             // <--- Añadimos la serie a la fila
+              numeroPregunta,
+              resp.respuesta,
               resp.esCorrecta ? "SI" : "NO",
-              tiempoSegundos,
+              tiempoSegundos
             ];
 
             csvRows.push(row.join(","));
@@ -88,24 +95,17 @@ const Results = () => {
     });
 
     if (csvRows.length === 0) {
-      alert(
-        "Los estudiantes listados no tienen respuestas guardadas para exportar."
-      );
+      alert("Los estudiantes listados no tienen respuestas guardadas para exportar.");
       return;
     }
 
-    // 3. Generar y descargar archivo
+    // Generar y descargar archivo
     const csvString = [headers.join(","), ...csvRows].join("\n");
     const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute(
-      "download",
-      `reporte_detallado_${activeTab}_${new Date()
-        .toISOString()
-        .slice(0, 10)}.csv`
-    );
+    link.setAttribute("download", `reporte_completo_${activeTab}_${new Date().toISOString().slice(0, 10)}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
