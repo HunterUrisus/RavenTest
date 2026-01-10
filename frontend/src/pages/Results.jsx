@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/results.css";
+import LoadingScreen from "../components/Loading.jsx";
 import { useGetEstudiantes } from "../hooks/useGetEstudiantes.jsx";
 import { useGetEvaluaciones } from "../hooks/useGetEvaluaciones.jsx";
 
 const Results = () => {
   const [activeTab, setActiveTab] = useState("students");
   const [loading, setLoading] = useState(true);
+  
+  // --- NUEVO ESTADO PARA EL FILTRO ---
+  const [showCompletedOnly, setShowCompletedOnly] = useState(false);
+
   const { estudiantes, fetchEstudiantes } = useGetEstudiantes();
   const { evaluaciones, fetchEvaluaciones } = useGetEvaluaciones();
   const navigate = useNavigate();
@@ -42,7 +47,7 @@ const Results = () => {
             return {
               id: estudiantes.indexOf(est),
               rut: est.rut,
-              grupo: est.grupo, // Mantenemos el valor original (1 o 2) para filtrar
+              grupo: est.grupo,
               nombre: est.nombre,
               test1: test1Val ?? "-",
               test2: test2Val ?? "-",
@@ -57,14 +62,23 @@ const Results = () => {
           })
       : [];
 
-  // 2. Lógica de Filtrado según la pestaña activa
+  // 2. Lógica de Filtrado Actualizada
   const filteredStudents = statsEstudiantes.filter((st) => {
-    if (activeTab === "group1") return st.grupo === 1;
-    if (activeTab === "group2") return st.grupo === 2;
-    return true; // 'students' muestra todos
+    // A. Filtro por Pestaña (Grupo)
+    let matchesTab = true;
+    if (activeTab === "group1") matchesTab = st.grupo === 1;
+    if (activeTab === "group2") matchesTab = st.grupo === 2;
+
+    // B. Filtro por Completitud (NUEVO)
+    let matchesCompletion = true;
+    if (showCompletedOnly) {
+      // Solo mostramos si AMBOS tests tienen valor distinto a "-"
+      matchesCompletion = st.test1 !== "-" && st.test2 !== "-";
+    }
+
+    return matchesTab && matchesCompletion;
   });
 
-  // Título dinámico según la pestaña
   const getTitle = () => {
     if (activeTab === "group1") return "Grupo 1: Experimental";
     if (activeTab === "group2") return "Grupo 2: Control";
@@ -72,12 +86,7 @@ const Results = () => {
   };
 
   if (loading) {
-    return (
-      <div className="loading-screen">
-        <div className="spinner"></div>
-        <p>Cargando resultados...</p>
-      </div>
-    );
+    return <LoadingScreen text="Cargando tabla de resultados..." />;
   } else {
     return (
       <div className="dashboard-page">
@@ -109,12 +118,46 @@ const Results = () => {
           {/* --- CUERPO DEL CONTENIDO --- */}
           <div className="browser-body">
             <div className="tab-content fade-in">
-              <div className="table-header">
-                <h2>{getTitle()}</h2>
-                {/* Contador de estudiantes visibles */}
-                <span style={{color: '#666', fontSize: '0.9em'}}>
+              <div 
+                className="table-header" 
+                style={{ 
+                  display: 'flex', 
+                  justifyContent: 'space-between', 
+                  alignItems: 'center', 
+                  marginBottom: '15px' 
+                }}
+              >
+                <div>
+                    <h2 style={{margin: 0}}>{getTitle()}</h2>
+                    <span style={{ color: "#666", fontSize: "0.9em" }}>
                     Mostrando {filteredStudents.length} registros
-                </span>
+                    </span>
+                </div>
+
+                {/* --- NUEVO CHECKBOX DE FILTRO --- */}
+                <label 
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    cursor: 'pointer',
+                    background: '#f8f9fa',
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    border: '1px solid #e0e0e0',
+                    fontSize: '0.9rem',
+                    userSelect: 'none'
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={showCompletedOnly}
+                    onChange={(e) => setShowCompletedOnly(e.target.checked)}
+                    style={{ cursor: "pointer", accentColor: "#2e7d32" }}
+                  />
+                  <span>Sólo completados</span>
+                </label>
+
               </div>
 
               <div className="table-wrapper">
@@ -135,7 +178,6 @@ const Results = () => {
                         <tr key={st.id}>
                           <td className="mono">{st.rut}</td>
 
-                          {/* Columna de Grupo Estilizada */}
                           <td style={{ textAlign: "center" }}>
                             <span
                               style={{
@@ -148,7 +190,11 @@ const Results = () => {
                                 border: st.grupo === 1 ? "1px solid #c8e6c9" : "1px solid #cfd8dc",
                               }}
                             >
-                              {st.grupo === 1 ? "Exp. (1)" : st.grupo === 2 ? "Ctrl. (2)" : "-"}
+                              {st.grupo === 1
+                                ? "Exp. (1)"
+                                : st.grupo === 2
+                                ? "Ctrl. (2)"
+                                : "-"}
                             </span>
                           </td>
 
@@ -196,8 +242,13 @@ const Results = () => {
                       ))
                     ) : (
                       <tr>
-                        <td colSpan="6" style={{ textAlign: "center", padding: "20px" }}>
-                          No hay estudiantes en este grupo.
+                        <td
+                          colSpan="6"
+                          style={{ textAlign: "center", padding: "20px" }}
+                        >
+                          {showCompletedOnly 
+                            ? "No hay estudiantes con ambos tests rendidos en este grupo." 
+                            : "No hay estudiantes en este grupo."}
                         </td>
                       </tr>
                     )}

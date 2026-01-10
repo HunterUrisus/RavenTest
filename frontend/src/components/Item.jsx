@@ -1,7 +1,5 @@
 import "../styles/Item.css";
 
-// Cambiar las imagenes por un fetch de la serie y num
-
 const Item = ({ questionNumber, serie, num, cantOpciones, onAnswer }) => {
 
   const base_path = `/test/${serie}/${num}`;

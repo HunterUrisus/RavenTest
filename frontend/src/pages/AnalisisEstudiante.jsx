@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useGetEvaluaciones } from "../hooks/useGetEvaluaciones";
+import LoadingScreen from "../components/Loading";
 import {
   getEstudianteByRut,
   updateGrupoEstudiante,
@@ -159,12 +160,7 @@ const StudentAnalysis = () => {
   };
 
   if (loading)
-    return (
-      <div className="loading-screen">
-        <div className="spinner"></div>
-        <p>Cargando expediente...</p>
-      </div>
-    );
+    return <LoadingScreen text="Cargando expediente del estudiante..." />;
 
   return (
     <div className="dashboard-page">

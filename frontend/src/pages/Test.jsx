@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import Item from "../components/Item.jsx";
 import getItemsByTestId from "../hooks/useGetItemsById.jsx";
 import { sendEvaluacion } from "../services/test.service.js";
+import LoadingScreen from "../components/Loading.jsx";
 
 const Test = ({ user, testSelected = 3, onFinish }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,12 +29,7 @@ const Test = ({ user, testSelected = 3, onFinish }) => {
   }, [currentIndex, loading]);
 
   if (loading) {
-    return (
-      <div className="loading-screen">
-        <div className="spinner"></div>
-        <p>Cargando preguntas...</p>
-      </div>
-    );
+    return <LoadingScreen text="Cargando test..." />;
   }
 
   const handleAnswer = (selectedOptionIndex) => {
@@ -85,27 +81,31 @@ const Test = ({ user, testSelected = 3, onFinish }) => {
   };
 
   const currentQuestion = items[currentIndex];
-
-  return (
-    <div className="test-page">
-      <div className="title">
-        <h1>TEST DE RAVEN</h1>
+  if (loading) {
+    return <LoadingScreen text="Cargando..." />;
+  } else {
+    return (
+      <div className="test-page">
+        <div className="title">
+          <h1>TEST DE RAVEN</h1>
+          
+        </div>
+        <div className="test-container">
+          {loading ? (
+            <LoadingScreen text="Procesando..." />
+          ) : (
+            <Item
+              questionNumber={currentIndex + 1}
+              serie={currentQuestion.serie}
+              num={currentQuestion.numero}
+              cantOpciones={currentQuestion.cantOpciones}
+              onAnswer={handleAnswer}
+            />
+          )}
+        </div>
       </div>
-      <div className="test-container">
-        {loading ? (
-          <p>Cargando pregunta...</p>
-        ) : (
-          <Item
-            questionNumber={currentIndex + 1}
-            serie={currentQuestion.serie}
-            num={currentQuestion.numero}
-            cantOpciones={currentQuestion.cantOpciones}
-            onAnswer={handleAnswer}
-          />
-        )}
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Test;
