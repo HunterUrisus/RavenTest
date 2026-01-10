@@ -8,7 +8,7 @@ import { useGetEvaluaciones } from "../hooks/useGetEvaluaciones.jsx";
 const Results = () => {
   const [activeTab, setActiveTab] = useState("students");
   const [loading, setLoading] = useState(true);
-  
+
   // --- NUEVO ESTADO PARA EL FILTRO ---
   const [showCompletedOnly, setShowCompletedOnly] = useState(false);
 
@@ -30,6 +30,86 @@ const Results = () => {
 
     cargarDatos();
   }, [fetchEstudiantes, fetchEvaluaciones]);
+
+  // Función para exportar TODO el detalle (Respuestas + Tiempos)
+  const handleExportFullCSV = () => {
+    if (filteredStudents.length === 0) {
+      alert("No hay datos para exportar.");
+      return;
+    }
+
+    // 1. Encabezados para un formato "Tidy Data" (Ideal para tablas dinámicas)
+    const headers = [
+      "RUT",
+      "Grupo",
+      "Nombre",
+      "Test_ID",
+      "Nro_Pregunta",
+      "Respuesta_Seleccionada",
+      "Es_Correcta",
+      "Tiempo_Segundos",
+    ];
+
+    const csvRows = [];
+
+    // 2. Iteramos por cada estudiante visible en la tabla
+    filteredStudents.forEach((st) => {
+      // Buscamos TODAS las evaluaciones de este estudiante en la data cruda
+      const userEvals = evaluaciones.filter(
+        (ev) => ev.rutEstudiante === st.rut
+      );
+
+      userEvals.forEach((evaluacion) => {
+        // Por cada evaluación, recorremos sus respuestas (items)
+        if (evaluacion.respuestas && evaluacion.respuestas.length > 0) {
+          evaluacion.respuestas.forEach((resp, index) => {
+            // Sanitizamos datos
+            const nombreSanitizado = `"${st.nombre}"`;
+            const grupoTexto = st.grupo === 1 ? "Experimental" : "Control";
+            const numeroPregunta = resp.item?.numero || index + 1; // Si tienes el número del item, úsalo
+            const tiempoSegundos = (resp.tiempo / 1000).toFixed(2); // Convertimos ms a segundos
+
+            // Creamos la fila
+            const row = [
+              st.rut,
+              grupoTexto,
+              nombreSanitizado,
+              evaluacion.codTest, // 1 o 2
+              numeroPregunta, // Ej: 1, 2, 3...
+              resp.respuesta, // Ej: 4
+              resp.esCorrecta ? "SI" : "NO",
+              tiempoSegundos,
+            ];
+
+            csvRows.push(row.join(","));
+          });
+        }
+      });
+    });
+
+    if (csvRows.length === 0) {
+      alert(
+        "Los estudiantes listados no tienen respuestas guardadas para exportar."
+      );
+      return;
+    }
+
+    // 3. Generar y descargar archivo
+    const csvString = [headers.join(","), ...csvRows].join("\n");
+    const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute(
+      "download",
+      `reporte_detallado_${activeTab}_${new Date()
+        .toISOString()
+        .slice(0, 10)}.csv`
+    );
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   // 1. Procesamiento de datos base
   const statsEstudiantes =
@@ -118,46 +198,63 @@ const Results = () => {
           {/* --- CUERPO DEL CONTENIDO --- */}
           <div className="browser-body">
             <div className="tab-content fade-in">
-              <div 
-                className="table-header" 
-                style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'center', 
-                  marginBottom: '15px' 
+              <div
+                className="table-header"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "15px",
                 }}
               >
                 <div>
-                    <h2 style={{margin: 0}}>{getTitle()}</h2>
-                    <span style={{ color: "#666", fontSize: "0.9em" }}>
+                  <h2 style={{ margin: 0 }}>{getTitle()}</h2>
+                  <span style={{ color: "#666", fontSize: "0.9em" }}>
                     Mostrando {filteredStudents.length} registros
-                    </span>
+                  </span>
                 </div>
 
-                {/* --- NUEVO CHECKBOX DE FILTRO --- */}
-                <label 
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    cursor: 'pointer',
-                    background: '#f8f9fa',
-                    padding: '8px 12px',
-                    borderRadius: '8px',
-                    border: '1px solid #e0e0e0',
-                    fontSize: '0.9rem',
-                    userSelect: 'none'
-                  }}
-                >
-                  <input
-                    type="checkbox"
-                    checked={showCompletedOnly}
-                    onChange={(e) => setShowCompletedOnly(e.target.checked)}
-                    style={{ cursor: "pointer", accentColor: "#2e7d32" }}
-                  />
-                  <span>Sólo completados</span>
-                </label>
+                <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+                  <button
+                    onClick={handleExportFullCSV}
+                    style={{
+                      backgroundColor: "#2e7d32",
+                      color: "white",
+                      border: "none",
+                      padding: "8px 12px",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      fontWeight: "bold",
+                      fontSize: "0.9rem",
+                    }}
+                  >
+                    Exportar Detalle CSV
+                  </button>
 
+                  {/* --- NUEVO CHECKBOX DE FILTRO --- */}
+                  <label
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      cursor: "pointer",
+                      background: "#f8f9fa",
+                      padding: "8px 12px",
+                      borderRadius: "8px",
+                      border: "1px solid #e0e0e0",
+                      fontSize: "0.9rem",
+                      userSelect: "none",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={showCompletedOnly}
+                      onChange={(e) => setShowCompletedOnly(e.target.checked)}
+                      style={{ cursor: "pointer", accentColor: "#2e7d32" }}
+                    />
+                    <span>Sólo completados</span>
+                  </label>
+                </div>
               </div>
 
               <div className="table-wrapper">
@@ -185,9 +282,13 @@ const Results = () => {
                                 borderRadius: "12px",
                                 fontSize: "0.85em",
                                 fontWeight: "bold",
-                                backgroundColor: st.grupo === 1 ? "#e8f5e9" : "#eceff1",
+                                backgroundColor:
+                                  st.grupo === 1 ? "#e8f5e9" : "#eceff1",
                                 color: st.grupo === 1 ? "#2e7d32" : "#546e7a",
-                                border: st.grupo === 1 ? "1px solid #c8e6c9" : "1px solid #cfd8dc",
+                                border:
+                                  st.grupo === 1
+                                    ? "1px solid #c8e6c9"
+                                    : "1px solid #cfd8dc",
                               }}
                             >
                               {st.grupo === 1
@@ -246,8 +347,8 @@ const Results = () => {
                           colSpan="6"
                           style={{ textAlign: "center", padding: "20px" }}
                         >
-                          {showCompletedOnly 
-                            ? "No hay estudiantes con ambos tests rendidos en este grupo." 
+                          {showCompletedOnly
+                            ? "No hay estudiantes con ambos tests rendidos en este grupo."
                             : "No hay estudiantes en este grupo."}
                         </td>
                       </tr>
